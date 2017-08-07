@@ -6,9 +6,7 @@ import model.pojo.User;
 
 import java.io.IOException;
 
-/**
- * Created by daniel on 02/08/17.
- */
+
 public class CreateUserModel implements CreateUser.Model {
 
     private CreateUser.Presenter presenter;

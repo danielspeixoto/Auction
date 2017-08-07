@@ -7,7 +7,7 @@ import view.BaseView;
  */
 public class Base {
 
-    interface View {
+    public interface View {
         void close();
 
         void showErrorDialog(String message);
@@ -15,11 +15,11 @@ public class Base {
         void changePanel(BaseView view);
     }
 
-    interface Presenter {
+    public interface Presenter {
         void onError(String message);
     }
 
-    interface Model {
+    public interface Model {
 
     }
 

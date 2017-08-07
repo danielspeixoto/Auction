@@ -4,9 +4,7 @@ import model.pojo.User;
 
 import java.io.*;
 
-/**
- * Created by daniel on 02/08/17.
- */
+
 public class Database {
 
     public static final int ERROR = -1;
@@ -18,6 +16,12 @@ public class Database {
     private static int usersId = 1;
 
     static {
+        setLastId();
+    }
+
+    // Olha todo o documento e verifica qual foi o último id inserido
+    // Recuperando seu valor, coloca em usersId
+    private static void setLastId() {
         try (FileReader reader = new FileReader(PATH_USERS);
              BufferedReader bufferedReader = new BufferedReader(reader)) {
             String last = "1", line;
@@ -30,6 +34,7 @@ public class Database {
         }
     }
 
+    // Retorna o id do usuário
     public static int insert(User user) throws IOException {
         FileWriter writer = new FileWriter(PATH_USERS, true);
         BufferedWriter bufferedWriter = new BufferedWriter(writer);
@@ -56,6 +61,7 @@ public class Database {
         return user;
     }
 
+    // Dá a linha que contêm os dados de um determinado usuário
     public static String getUserLine(String email) throws IOException {
         FileReader reader = new FileReader(PATH_USERS);
         BufferedReader bufferedReader = new BufferedReader(reader);
@@ -72,6 +78,8 @@ public class Database {
         return currentLine == null ? "" : currentLine;
     }
 
+    // Se existe um usuário com esse email e senha,retorna o usuário,
+    // caso não exista, retorna null
     public static User login(String email, String password) throws IOException {
         User user = null;
         String[] arr;
@@ -85,6 +93,7 @@ public class Database {
         return user;
     }
 
+    // Cria um user baseando-se na linha que contém seus dados
     private static User stringToUser(String str) {
         String arr[] = str.split(",");
         return new User(Integer.valueOf(arr[INDEX_ID]), arr[INDEX_NAME], arr[INDEX_EMAIL], arr[INDEX_PASSWORD]);

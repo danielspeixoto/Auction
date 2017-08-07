@@ -2,9 +2,7 @@ package contract;
 
 import model.pojo.User;
 
-/**
- * Created by daniel on 02/08/17.
- */
+
 public class CreateUser {
 
     public interface View extends Base.View {

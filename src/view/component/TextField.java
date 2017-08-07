@@ -2,9 +2,7 @@ package view.component;
 
 import javax.swing.*;
 
-/**
- * Created by daniel on 02/08/17.
- */
+
 public abstract class TextField extends JPanel {
 
     protected JTextField textField;

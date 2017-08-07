@@ -2,12 +2,8 @@ package view;
 
 import javax.swing.*;
 
-/**
- * Created by daniel on 02/08/17.
- */
-public class Window extends JFrame {
 
-    private BaseView view;
+public class Window extends JFrame {
 
     private Window(BaseView view) {
         super();
