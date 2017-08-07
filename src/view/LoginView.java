@@ -9,9 +9,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-/**
- * Created by daniel on 22/07/17.
- */
+
 public class LoginView extends BaseView implements Login.View {
 
     private InputField emailField;

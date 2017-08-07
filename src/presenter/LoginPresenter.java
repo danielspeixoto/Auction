@@ -5,9 +5,7 @@ import model.LoginModel;
 import util.Validate;
 import view.HomeView;
 
-/**
- * Created by daniel on 22/07/17.
- */
+
 public class LoginPresenter implements Login.Presenter {
 
     private Login.View view;
