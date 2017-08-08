@@ -6,9 +6,7 @@ import model.pojo.User;
 import util.Validate;
 import view.HomeView;
 
-/**
- * Created by daniel on 02/08/17.
- */
+
 public class CreateUserPresenter implements CreateUser.Presenter {
 
     private CreateUser.View view;

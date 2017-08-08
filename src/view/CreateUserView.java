@@ -10,9 +10,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-/**
- * Created by daniel on 02/08/17.
- */
+
 public class CreateUserView extends BaseView implements CreateUser.View {
 
     private InputField emailField;

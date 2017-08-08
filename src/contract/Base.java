@@ -2,12 +2,10 @@ package contract;
 
 import view.BaseView;
 
-/**
- * Created by daniel on 22/07/17.
- */
+
 public class Base {
 
-    interface View {
+    public interface View {
         void close();
 
         void showErrorDialog(String message);
@@ -15,11 +13,11 @@ public class Base {
         void changePanel(BaseView view);
     }
 
-    interface Presenter {
+    public interface Presenter {
         void onError(String message);
     }
 
-    interface Model {
+    public interface Model {
 
     }
 
