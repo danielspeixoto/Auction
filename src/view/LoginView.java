@@ -35,7 +35,6 @@ public class LoginView extends BaseView implements Login.View {
         add(createAccountButton);
         add(loginButton);
 
-        presenter = new LoginPresenter(this);
         loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -59,5 +58,6 @@ public class LoginView extends BaseView implements Login.View {
         frame.setSize(300, 280);
         frame.setResizable(false);
         frame.setTitle("Bem-Vindo!");
+        presenter = new LoginPresenter(this);
     }
 }

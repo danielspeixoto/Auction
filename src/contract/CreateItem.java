@@ -1,17 +1,19 @@
 package contract;
 
+import model.pojo.Item;
 
-public class Login {
+public class CreateItem {
 
     public interface View extends Base.View {
     }
 
     public interface Presenter extends Base.Presenter {
-        void login(String username, String password);
-        void onLoginSuccess();
+        void createItem(Item item);
+
+        void onCreateSuccess();
     }
 
     public interface Model extends Base.Model {
-        void login(String username, String password);
+        void createItem(Item item);
     }
 }
