@@ -2,9 +2,9 @@ package presenter;
 
 import contract.Login;
 import model.LoginModel;
+import util.Global;
 import util.Validate;
 import view.HomeView;
-
 
 public class LoginPresenter implements Login.Presenter {
 
@@ -13,6 +13,9 @@ public class LoginPresenter implements Login.Presenter {
 
     public LoginPresenter(Login.View view) {
         this.view = view;
+        if (Global.isLogged()) {
+            onLoginSuccess();
+        }
         this.model = new LoginModel(this);
     }
 

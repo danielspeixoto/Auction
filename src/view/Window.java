@@ -1,6 +1,7 @@
 package view;
 
 import javax.swing.*;
+import java.awt.*;
 
 
 public class Window extends JFrame {
@@ -23,5 +24,11 @@ public class Window extends JFrame {
         setContentPane(view);
         revalidate();
         view.onPostCreated();
+    }
+
+    //TODO implementar
+    public void fillScreen() {
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        setBounds(0, 0, screenSize.width, screenSize.height);
     }
 }

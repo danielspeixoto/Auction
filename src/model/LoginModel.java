@@ -1,10 +1,9 @@
 package model;
 
 import contract.Login;
-import mock.Database;
+import mock.UserDatabase;
 import model.pojo.User;
-
-import java.io.IOException;
+import util.Global;
 
 
 public class LoginModel implements Login.Model {
@@ -15,17 +14,17 @@ public class LoginModel implements Login.Model {
         this.presenter = presenter;
     }
 
-
     public void login(String email, String password) {
         User user;
         try {
-            user = Database.login(email, password);
+            user = UserDatabase.login(email, password);
             if (user != null) {
+                Global.setCurrentUser(user);
                 presenter.onLoginSuccess();
             } else {
                 presenter.onError("Email ou senha incorretos");
             }
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
             presenter.onError("Algum erro ocorreu");
         }
