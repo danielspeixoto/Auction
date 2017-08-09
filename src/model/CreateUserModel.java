@@ -2,9 +2,8 @@ package model;
 
 import contract.CreateUser;
 import mock.Database;
+import mock.UserDatabase;
 import model.pojo.User;
-
-import java.io.IOException;
 
 
 public class CreateUserModel implements CreateUser.Model {
@@ -18,14 +17,14 @@ public class CreateUserModel implements CreateUser.Model {
     public void createUser(User user) {
         int result;
         try {
-            if (Database.getUserLine(user.getEmail()).equals("")) {
-                result = Database.insert(user);
+            if (Database.getData(UserDatabase.PATH_USERS, UserDatabase.INDEX_EMAIL, user.getEmail()).equals("")) {
+                result = Database.insert(UserDatabase.PATH_USERS, user);
                 user.setId(result);
                 presenter.onCreateSuccess();
             } else {
                 presenter.onError("O email já está cadastrado");
             }
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
             presenter.onError("Algum erro ocorreu");
         }

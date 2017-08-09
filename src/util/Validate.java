@@ -1,5 +1,6 @@
 package util;
 
+import model.pojo.Item;
 import model.pojo.User;
 
 import java.util.regex.Pattern;
@@ -40,6 +41,12 @@ public class Validate {
         if (!Pattern.matches(EMAIL_REGEX, email)) {
             result = "Formato do email está incorreto";
         }
+        return result;
+    }
+
+    //TODO implementar
+    public static String validate(Item item) {
+        String result = OK;
         return result;
     }
 }
