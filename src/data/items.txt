@@ -1,0 +1,5 @@
+1,0,Jaca
+2,0,Bola
+3,0,Bola
+4,0,Espada
+5,0,jaca

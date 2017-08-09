@@ -9,6 +9,7 @@ import java.io.IOException;
 public class Database {
 
     public static final int ERROR = -1;
+    public static final int INDEX_ID = 0;
 
     // Olha todo o documento e verifica qual foi o último id inserido
     // e salva no sistema
@@ -19,7 +20,7 @@ public class Database {
             while ((line = bufferedReader.readLine()) != null) {
                 last = line;
             }
-            return Integer.valueOf(last.split(",")[0]);
+            return Integer.valueOf(last.split(",")[INDEX_ID]);
         } catch (IOException e) {
             e.printStackTrace();
         }

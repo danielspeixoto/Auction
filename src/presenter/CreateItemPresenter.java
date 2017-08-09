@@ -9,6 +9,7 @@ public class CreateItemPresenter implements CreateItem.Presenter {
 
     private CreateItem.View view;
     private CreateItem.Model model;
+    private Item item;
 
     public CreateItemPresenter(CreateItem.View view) {
         this.view = view;
@@ -25,6 +26,7 @@ public class CreateItemPresenter implements CreateItem.Presenter {
                     model.createItem(item);
                 }
             }).start();
+            this.item = item;
         } else {
             view.showErrorDialog(result);
         }
@@ -32,6 +34,7 @@ public class CreateItemPresenter implements CreateItem.Presenter {
 
     @Override
     public void onCreateSuccess() {
+        view.onCreateSuccess(item);
         view.close();
     }
 

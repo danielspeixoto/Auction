@@ -35,4 +35,9 @@ public class CreateItemView extends BaseView implements CreateItem.View {
         frame.setTitle("Criar Item");
         presenter = new CreateItemPresenter(this);
     }
+
+    @Override
+    public void onCreateSuccess(Item item) {
+        frame.setResult(item);
+    }
 }
