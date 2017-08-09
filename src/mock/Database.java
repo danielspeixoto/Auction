@@ -15,7 +15,7 @@ public class Database {
     private static int getLastId(String path) {
         try (FileReader reader = new FileReader(path);
              BufferedReader bufferedReader = new BufferedReader(reader)) {
-            String last = "1", line;
+            String last = "0", line;
             while ((line = bufferedReader.readLine()) != null) {
                 last = line;
             }
@@ -28,7 +28,7 @@ public class Database {
 
     public static int insert(String path, Object object) throws IOException {
         int id = getLastId(path) + 1;
-        WriteToFile.write(path, id + "," + object.toString());
+        WriteToFile.write(path, id + "," + object.toString() + "\n");
         return id;
     }
 

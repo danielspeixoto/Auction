@@ -1,36 +1,42 @@
 package model.pojo;
 
 public class Item {
-    private int id;
-    private User owner;
+    private Integer id;
+    private Integer ownerId;
     private String description;
-    private Auction auction;
+    private Integer auctionId;
 
-    public Item(User owner, String description) {
-        this.owner = owner;
+    public Item(Integer ownerId, String description) {
+        this.ownerId = ownerId;
         this.description = description;
     }
 
-    public Item(int id, User owner, String description) {
+    public Item(Integer ownerId, Integer auctionId, String description) {
+        this.ownerId = ownerId;
+        this.auctionId = auctionId;
+        this.description = description;
+    }
+
+    public Item(Integer id, Integer ownerId, Integer auctionId, String description) {
         this.id = id;
-        this.owner = owner;
+        this.ownerId = ownerId;
         this.description = description;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public User getOwner() {
-        return owner;
+    public Integer getOwnerId() {
+        return ownerId;
     }
 
-    public void setOwner(User owner) {
-        this.owner = owner;
+    public void setOwnerId(Integer ownerId) {
+        this.ownerId = ownerId;
     }
 
     public String getDescription() {
@@ -41,18 +47,20 @@ public class Item {
         this.description = description;
     }
 
-    public Auction getAuction() {
-        return auction;
+    public Integer getAuctionId() {
+        return auctionId;
     }
 
-    public void setAuction(Auction auction) {
-        this.auction = auction;
+    public void setAuctionId(Integer auctionId) {
+        this.auctionId = auctionId;
     }
 
     @Override
     public String toString() {
-        return id +
-                "," + owner +
-                ",'" + description;
+        String str = id == null ? "" : id.toString() + ",";
+        if (auctionId == null) throw new NullPointerException();
+        return str + ownerId +
+                "," + auctionId +
+                "," + description;
     }
 }

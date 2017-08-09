@@ -5,8 +5,6 @@ import mock.Database;
 import mock.UserDatabase;
 import model.pojo.User;
 
-import java.io.IOException;
-
 
 public class CreateUserModel implements CreateUser.Model {
 
@@ -26,7 +24,7 @@ public class CreateUserModel implements CreateUser.Model {
             } else {
                 presenter.onError("O email já está cadastrado");
             }
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
             presenter.onError("Algum erro ocorreu");
         }

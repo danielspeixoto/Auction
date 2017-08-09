@@ -5,8 +5,6 @@ import mock.UserDatabase;
 import model.pojo.User;
 import util.Global;
 
-import java.io.IOException;
-
 
 public class LoginModel implements Login.Model {
 
@@ -26,7 +24,7 @@ public class LoginModel implements Login.Model {
             } else {
                 presenter.onError("Email ou senha incorretos");
             }
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
             presenter.onError("Algum erro ocorreu");
         }

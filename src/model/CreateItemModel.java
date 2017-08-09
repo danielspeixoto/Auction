@@ -5,8 +5,6 @@ import mock.Database;
 import mock.ItemDatabase;
 import model.pojo.Item;
 
-import java.io.IOException;
-
 public class CreateItemModel implements CreateItem.Model {
 
     private CreateItem.Presenter presenter;
@@ -21,7 +19,7 @@ public class CreateItemModel implements CreateItem.Model {
             result = Database.insert(ItemDatabase.PATH_ITEMS, item);
             item.setId(result);
             presenter.onCreateSuccess();
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
             presenter.onError("Algum erro ocorreu");
         }
