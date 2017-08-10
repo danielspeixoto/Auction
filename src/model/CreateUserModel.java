@@ -20,7 +20,8 @@ public class CreateUserModel implements CreateUser.Model {
             if (Database.getData(UserDatabase.PATH_USERS, UserDatabase.INDEX_EMAIL, user.getEmail()).equals("")) {
                 result = Database.insert(UserDatabase.PATH_USERS, user);
                 user.setId(result);
-                presenter.onCreateSuccess();
+                presenter.createUserAccount(result);
+                //presenter.onCreateSuccess();
             } else {
                 presenter.onError("O email já está cadastrado");
             }

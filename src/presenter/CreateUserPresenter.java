@@ -1,7 +1,9 @@
 package presenter;
 
+import contract.CreateAccount;
 import contract.CreateUser;
 import model.CreateUserModel;
+import model.pojo.Account;
 import model.pojo.User;
 import util.Validate;
 import view.HomeView;
@@ -11,6 +13,7 @@ public class CreateUserPresenter implements CreateUser.Presenter {
 
     private CreateUser.View view;
     private CreateUser.Model model;
+    private CreateAccount.Presenter accountPresenter;
 
     public CreateUserPresenter(CreateUser.View view) {
         this.view = view;
@@ -21,12 +24,12 @@ public class CreateUserPresenter implements CreateUser.Presenter {
     public void createUser(User user) {
         String result = Validate.validate(user);
         if (result.equals(Validate.OK)) {
-            new Thread(new Runnable() {
+           new Thread(new Runnable() {
                 @Override
                 public void run() {
                     model.createUser(user);
                 }
-            }).start();
+           }).start();
         } else {
             view.showErrorDialog(result);
         }
@@ -41,4 +44,10 @@ public class CreateUserPresenter implements CreateUser.Presenter {
     public void onError(String message) {
         view.showErrorDialog(message);
     }
+
+	@Override
+	public void createUserAccount(int user_id) {
+		accountPresenter.createAccount(new Account(), user_id);
+		
+	}
 }

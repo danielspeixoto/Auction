@@ -1,8 +1,9 @@
 package model;
 
 import contract.CreateAccount;
+import mock.AccountDatabase;
+import mock.Database;
 import model.pojo.Account;
-import model.pojo.User;
 
 public class CreateAccountModel implements CreateAccount.Model {
 	
@@ -13,9 +14,17 @@ public class CreateAccountModel implements CreateAccount.Model {
 	}
 	
 	@Override
-	public void createAccount(Account account, User user) {
-		// TODO Auto-generated method stub
-		
+	public void createAccount(Account account) {
+		try {
+			if (Database.getData(AccountDatabase.PATH_ACCOUNTS, AccountDatabase.INDEX_USER_ID, Integer.toString(account.getUserId())).equals("")) {
+                Database.insert(AccountDatabase.PATH_ACCOUNTS, account);
+                presenter.onCreateSuccess();
+            } else {
+                presenter.onError("Sua usuário já possui uma conta associada");
+            }
+		} catch(Exception e) {
+			e.printStackTrace();
+			presenter.onError("Erro Fatal");
+		}	
 	}
-
 }

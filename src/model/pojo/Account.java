@@ -1,12 +1,21 @@
 package model.pojo;
 
 public class Account {
+	private int userId;
 	private double balance;
 	private double frozenBalance;
 	
-	public Account(double balance) {
-		this.balance = balance;
+	public Account() {
+		this.balance = 0;
 		this.frozenBalance = 0;
+	}
+	
+	public int getUserId() {
+		return userId;
+	}
+
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
 
 	public double getBalance() {
