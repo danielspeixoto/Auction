@@ -1,11 +1,10 @@
 package view;
 
-import javax.swing.JButton;
+import javax.swing.*;
 
 import contract.CreateAccount;
+import model.pojo.Account;
 import presenter.CreateAccountPresenter;
-import view.component.InputField;
-import view.component.PasswordField;
 
 public class CreateAccountView extends BaseView implements CreateAccount.View {
 		
@@ -13,6 +12,18 @@ public class CreateAccountView extends BaseView implements CreateAccount.View {
 	
 	public CreateAccountView() { 
 		super();
+		presenter = new CreateAccountPresenter(this);
+	}
+
+	@Override
+	public void createAccount(Account account, int user_id) {
+		presenter.createAccount(account, user_id);
+	}
+
+	@Override
+	public void onCreateSuccess() {
+		JOptionPane.showMessageDialog(null, "Sucesso ao criar conta!");
+		
 	}
 }
 

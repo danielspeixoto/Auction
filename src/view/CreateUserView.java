@@ -1,6 +1,5 @@
 package view;
 
-
 import contract.CreateUser;
 import model.pojo.User;
 import presenter.CreateUserPresenter;

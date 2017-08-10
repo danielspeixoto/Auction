@@ -34,4 +34,11 @@ public class Account {
 		this.frozenBalance = frozenBalance;
 	}
 	
+	@Override
+    public String toString() {
+        return  userId +
+                "," + balance +
+                "," + frozenBalance;
+    }
+	
 }

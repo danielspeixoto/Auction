@@ -6,14 +6,15 @@ import model.CreateUserModel;
 import model.pojo.Account;
 import model.pojo.User;
 import util.Validate;
+import view.CreateAccountView;
 import view.HomeView;
 
 
 public class CreateUserPresenter implements CreateUser.Presenter {
 
     private CreateUser.View view;
+    private CreateAccount.View accountView;
     private CreateUser.Model model;
-    private CreateAccount.Presenter accountPresenter;
 
     public CreateUserPresenter(CreateUser.View view) {
         this.view = view;
@@ -36,18 +37,14 @@ public class CreateUserPresenter implements CreateUser.Presenter {
     }
 
     @Override
-    public void onCreateSuccess() {
-        view.changePanel(new HomeView());
+    public void onCreateSuccess(int user_id) {
+    	accountView = new CreateAccountView();
+    	accountView.createAccount(new Account(), user_id);
+    	view.changePanel(new HomeView());
     }
 
     @Override
     public void onError(String message) {
         view.showErrorDialog(message);
     }
-
-	@Override
-	public void createUserAccount(int user_id) {
-		accountPresenter.createAccount(new Account(), user_id);
-		
-	}
 }

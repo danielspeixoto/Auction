@@ -10,8 +10,7 @@ public class CreateUser {
 
     public interface Presenter extends Base.Presenter {
         void createUser(User user);
-        void createUserAccount(int user_id);
-        void onCreateSuccess();
+        void onCreateSuccess(int user_id);
     }
 
     public interface Model extends Base.Model {

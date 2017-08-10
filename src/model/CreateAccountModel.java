@@ -16,11 +16,11 @@ public class CreateAccountModel implements CreateAccount.Model {
 	@Override
 	public void createAccount(Account account) {
 		try {
-			if (Database.getData(AccountDatabase.PATH_ACCOUNTS, AccountDatabase.INDEX_USER_ID, Integer.toString(account.getUserId())).equals("")) {
-                Database.insert(AccountDatabase.PATH_ACCOUNTS, account);
+			if (Database.getData(AccountDatabase.PATH_ACCOUNTS, AccountDatabase.INDEX_USER_ID, Integer.toString(account.getUserId())) == null) {
+                Database.insert(AccountDatabase.PATH_ACCOUNTS, account);         
                 presenter.onCreateSuccess();
             } else {
-                presenter.onError("Sua usuário já possui uma conta associada");
+                presenter.onError("Seu usuário já possui uma conta associada");
             }
 		} catch(Exception e) {
 			e.printStackTrace();
