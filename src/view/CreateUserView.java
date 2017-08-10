@@ -45,7 +45,7 @@ public class CreateUserView extends BaseView implements CreateUser.View {
             public void actionPerformed(ActionEvent e) {
                 if (passwordField.getText().equals(repeatPasswordField.getText())) {
                     User user = new User(nameField.getText(),
-                            emailField.getText(), passwordField.getText());
+                    emailField.getText(), passwordField.getText());
                     presenter.createUser(user);
                 } else {
                     showErrorDialog("As senhas não são iguais");
