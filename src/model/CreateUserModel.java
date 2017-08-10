@@ -17,7 +17,7 @@ public class CreateUserModel implements CreateUser.Model {
     public void createUser(User user) {
         int result;
         try {
-            if (Database.getData(UserDatabase.PATH_USERS, UserDatabase.INDEX_EMAIL, user.getEmail()).equals("")) {
+            if (Database.getData(UserDatabase.PATH_USERS, UserDatabase.INDEX_EMAIL, user.getEmail()) == null) {
                 result = Database.insert(UserDatabase.PATH_USERS, user);
                 user.setId(result);
                 presenter.createUserAccount(result);

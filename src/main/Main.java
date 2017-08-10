@@ -1,3 +1,5 @@
+package main;
+
 import view.LoginView;
 import view.Window;
 
