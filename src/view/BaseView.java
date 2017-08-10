@@ -20,7 +20,6 @@ public abstract class BaseView extends JPanel implements Base.View {
 
     @Override
     public void showErrorDialog(String message) {
-        System.out.println("aqui");
         JOptionPane.showMessageDialog(frame, message);
     }
 
