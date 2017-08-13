@@ -8,11 +8,11 @@ public class Misc extends Item {
     private String containerDescription;
 
     public Misc(Integer ownerId, String description) {
-        super();
+        super(ownerId, description);
     }
     
     public Misc(Integer ownerId, String description, Double length, Double width, Double height, Double weight, String containerDescription) {
-        super();
+        super(ownerId, description);
         this.length = length;
         this.width = width;
         this.height = height;
@@ -56,14 +56,14 @@ public class Misc extends Item {
     	this.containerDescription = containerDescription;
     }
     
-    public Double getContainerDesccription() {
-    	return this.containerDesccription;
+    public String getContainerDescription() {
+    	return this.containerDescription;
     }
     
     @Override
-    public String toSotring() {
-        String str = super();
-        return str +
+    public String toString() {
+        String str = super.toString();
+		return str +
         		"," +length +
                 "," + width +
                 "," + height +
