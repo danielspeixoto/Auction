@@ -59,4 +59,15 @@ public class Misc extends Item {
     public Double getContainerDesccription() {
     	return this.containerDesccription;
     }
+    
+    @Override
+    public String toSotring() {
+        String str = super();
+        return str +
+        		"," +length +
+                "," + width +
+                "," + height +
+                "," + weight +
+                "," + containerDescription;
+    }
 }
