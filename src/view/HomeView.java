@@ -7,10 +7,16 @@ import javax.swing.*;
 
 public class HomeView extends BaseView implements Home.View {
 
-    private JButton createItemButton;
+    private JButton createAuctionButton;
 
     public HomeView() {
         super();
+        createAuctionButton = new JButton("Criar leilão");
+        createAuctionButton.setBounds(20, 20, 50, 50);
+        createAuctionButton.addActionListener(e -> {
+            frame.createForResult(new CreateAuctionView());
+        });
+        add(createAuctionButton);
     }
 
     @Override
