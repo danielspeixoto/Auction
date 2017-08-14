@@ -47,7 +47,7 @@ public class LoginView extends BaseView implements Login.View {
         createAccountButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                changePanel(new CreateUserView());
+                frame.changePanel(new CreateUserView());
             }
         });
     }

@@ -1,5 +1,6 @@
 package util;
 
+import model.pojo.Auction;
 import model.pojo.Item;
 import model.pojo.User;
 
@@ -44,9 +45,25 @@ public class Validate {
         return result;
     }
 
-    //TODO implementar
     public static String validate(Item item) {
         String result = OK;
+        if (!Pattern.matches(NAME_REGEX, item.getDescription())) {
+            result = "A descrição não está escrita propriamente";
+            return result;
+        }
+        return result;
+    }
+
+    public static String validate(Auction auction) {
+        String result = OK;
+        return result;
+    }
+
+    public static String integer(String str) {
+        String result = OK;
+        if (Pattern.matches("[0-9]*", result) && str.length() > 0) {
+            result = "Não é um número valído";
+        }
         return result;
     }
 }
