@@ -3,3 +3,4 @@
 3,0,Bola
 4,0,Espada
 5,0,jaca
+6,0,dsfsd

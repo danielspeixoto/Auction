@@ -23,12 +23,7 @@ public class LoginPresenter implements Login.Presenter {
     public void login(String email, String password) {
         String result = Validate.email(email);
         if (result.equals(Validate.OK)) {
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    model.login(email, password);
-                }
-            }).start();
+            model.login(email, password);
         } else {
             view.showErrorDialog(result);
         }
