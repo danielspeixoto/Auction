@@ -5,6 +5,7 @@ public class InjectMoney {
 	}
 	
 	public interface Presenter extends Base.Presenter {
+		void injectMoney(double value);
 	}
 	
 	public interface Model extends Base.Model {

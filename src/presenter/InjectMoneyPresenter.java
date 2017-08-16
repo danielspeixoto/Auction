@@ -1,5 +1,7 @@
 package presenter;
 
+import javax.swing.JOptionPane;
+
 import contract.InjectMoney;
 import model.InjectMoneyModel;
 import view.InjectMoneyView;
@@ -18,6 +20,11 @@ public class InjectMoneyPresenter implements InjectMoney.Presenter {
 	public void onError(String message) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public void injectMoney(double value) {
+		JOptionPane.showMessageDialog(null, "Em implementação");
 	}
 
 }
