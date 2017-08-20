@@ -47,7 +47,7 @@ public class Validate {
 
     public static String validate(Item item) {
         String result = OK;
-        if (!Pattern.matches(NAME_REGEX, item.getDescription())) {
+        if (!Pattern.matches(NAME_REGEX, item.getName())) {
             result = "A descrição não está escrita propriamente";
             return result;
         }
