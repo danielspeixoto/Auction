@@ -8,6 +8,7 @@ import javax.swing.*;
 public abstract class BaseView extends JPanel implements Base.View {
 
     protected Window frame;
+    protected Object result;
 
     public BaseView() {
         setLayout(null);
@@ -32,5 +33,13 @@ public abstract class BaseView extends JPanel implements Base.View {
     // à Window
     public void onPostCreated() {
         frame = (Window) SwingUtilities.windowForComponent(this);
+    }
+
+    public Object getResult() {
+        return result;
+    }
+
+    public void setResult(Object result) {
+        this.result = result;
     }
 }

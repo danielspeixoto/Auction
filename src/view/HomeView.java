@@ -28,9 +28,18 @@ public class HomeView extends BaseView implements Home.View {
     private JLabel programValue;
     private JPanel homeHeader;
     private JPanel auctionsList;
+    
+    private JButton createAuctionButton;
 
     public HomeView() {
         super();
+        
+        createAuctionButton = new JButton("Criar leilão");
+        createAuctionButton.setBounds(20, 20, 50, 50);
+        createAuctionButton.addActionListener(e -> {
+            frame.createForResult(new CreateAuctionView());
+        });
+        add(createAuctionButton);
         
         menuBar = new JMenuBar();
         accountMenu = new JMenu("Conta");
@@ -84,7 +93,6 @@ public class HomeView extends BaseView implements Home.View {
 				Window.create(new InjectMoneyView());
 			}
         });
-        
     }
 
     @Override

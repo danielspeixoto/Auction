@@ -10,7 +10,6 @@ public class UserDatabase extends Database {
     public static final int INDEX_EMAIL = 1;
     public static final int INDEX_PASSWORD = 3;
     public static final int INDEX_NAME = 2;
-    public static final int INDEX_ID = 0;
     public static final String PATH_USERS = "src//data//users.txt";
 
     // Se existe um usuário com esse email e senha,retorna o usuário,
