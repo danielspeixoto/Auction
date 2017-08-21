@@ -57,13 +57,9 @@ public class Database {
 		try {
 			FileReader reader;
 			reader = new FileReader(path);
-			
 			BufferedReader bufferedReader = new BufferedReader(reader);
-			
-
 			StringBuffer inputBuffer = new StringBuffer();
 			String currentLine;
-			
 			
 			while ((currentLine = bufferedReader.readLine()) != null) {
 				
@@ -78,7 +74,6 @@ public class Database {
 
 			String inputString = inputBuffer.toString();
 			System.out.println(inputString);
-		
 			bufferedReader.close();	
 			reader.close();
 			
