@@ -3,8 +3,13 @@ package mock;
 import util.WriteToFile;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileOutputStream;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+
+import javax.swing.JOptionPane;
 
 public class Database {
 
@@ -47,5 +52,36 @@ public class Database {
         reader.close();
         return currentLine;
     }
-
+    
+    public static void replaceLine(String path, String oldLine, String newLine) throws IOException {
+    	FileReader reader = new FileReader(path);
+        FileWriter writer = new FileWriter(path);
+        BufferedReader bufferedReader = new BufferedReader(reader);
+        BufferedWriter bufferedWriter = new BufferedWriter(writer);
+        
+        StringBuffer inputBuffer = new StringBuffer();
+        String currentLine;
+        
+        while ((currentLine = bufferedReader.readLine()) != null) {
+        	System.out.println("oi");
+        	System.out.println(currentLine);
+        	if (currentLine.equals(oldLine)) {
+            	inputBuffer.append(newLine);
+            	inputBuffer.append('\n');        
+            } else {
+            	inputBuffer.append(currentLine);
+            	inputBuffer.append('\n');  
+            }
+        }
+        
+        String inputString = inputBuffer.toString();
+        
+        bufferedWriter.write(inputString);
+        
+        bufferedWriter.close();
+        bufferedReader.close();
+        writer.close();
+        reader.close();
+        
+    }
 }

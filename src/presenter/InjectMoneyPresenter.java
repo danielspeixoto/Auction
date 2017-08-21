@@ -24,7 +24,12 @@ public class InjectMoneyPresenter implements InjectMoney.Presenter {
 
 	@Override
 	public void injectMoney(double value) {
-		JOptionPane.showMessageDialog(null, "Em implementação");
+		model.injectMoney(value);
+	}
+
+	@Override
+	public void onInjectSuccess() {
+		view.onInjectSuccess();	
 	}
 
 }

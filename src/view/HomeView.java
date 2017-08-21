@@ -4,6 +4,7 @@ import contract.Home;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -26,6 +27,7 @@ public class HomeView extends BaseView implements Home.View {
     private JLabel accountValueDescriptionLabel;
     private JLabel programValue;
     private JPanel homeHeader;
+    private JPanel auctionsList;
 
     public HomeView() {
         super();
@@ -38,6 +40,7 @@ public class HomeView extends BaseView implements Home.View {
         editUser = new JMenuItem("Editar Perfil");
         createAuction = new JMenuItem("Criar Leilão");
         logOut = new JMenuItem("Sair");
+        
         menuBar.add(mainMenu);
         menuBar.add(accountMenu);
         menuBar.add(auctionMenu);
@@ -56,17 +59,24 @@ public class HomeView extends BaseView implements Home.View {
         programNameLabel.setFont(new Font("Dialog", Font.PLAIN, 26));
         accountValueLabel = new JLabel("R$ 0.00");
         accountValueLabel.setForeground(Color.WHITE);
-        accountValueLabel.setBounds(650, 20, 150, 55);
-        accountValueLabel.setFont(new Font("Dialog", Font.PLAIN, 36));
+        accountValueLabel.setBounds(650, 20, 150, 50);
+        accountValueLabel.setFont(new Font("Dialog", Font.PLAIN, 30));
         accountValueDescriptionLabel = new JLabel("Saldo Atual");
         accountValueDescriptionLabel.setForeground(Color.WHITE);
         accountValueDescriptionLabel.setBounds(650, 0, 150, 30);
-        accountValueDescriptionLabel.setFont(new Font("Dialog", Font.PLAIN, 14));
-        
-        homeHeader.add(accountValueLabel);
+        accountValueDescriptionLabel.setFont(new Font("Dialog", Font.BOLD, 14));
+            
         homeHeader.add(programNameLabel);
+        homeHeader.add(accountValueLabel);
         homeHeader.add(accountValueDescriptionLabel);
         add(homeHeader);
+        
+        auctionsList = new JPanel();
+        auctionsList.setBounds(0, 70, 800, 530);
+        auctionsList.setBackground(new Color(234,234,234));
+        auctionsList.setLayout(new GridLayout());
+        
+        add(auctionsList);
         
         addValue.addActionListener(new ActionListener() {
 			@Override

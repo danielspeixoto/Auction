@@ -33,7 +33,7 @@ public class CreateUserPresenter implements CreateUser.Presenter {
     }
 
     @Override
-    public void onCreateSuccess(int user_id) {
+    public void onCreateSuccess() {
     	view.changePanel(new HomeView());
     }
 
