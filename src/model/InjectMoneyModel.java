@@ -33,7 +33,7 @@ public class InjectMoneyModel implements InjectMoney.Model {
 			}
 			
 			Database.replaceLine(AccountDatabase.PATH_ACCOUNTS, currentLine, newLine);
-			presenter.onInjectSuccess();
+			presenter.onInjectSuccess(newBalance);
 		} catch(Exception e) {
 			e.printStackTrace();
 			presenter.onError("Ops... Parece que algo deu errado");

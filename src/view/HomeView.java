@@ -28,19 +28,10 @@ public class HomeView extends BaseView implements Home.View {
     private JLabel programValue;
     private JPanel homeHeader;
     private JPanel auctionsList;
-    
-    private JButton createAuctionButton;
-
+  
     public HomeView() {
         super();
-        
-        createAuctionButton = new JButton("Criar leilão");
-        createAuctionButton.setBounds(20, 20, 50, 50);
-        createAuctionButton.addActionListener(e -> {
-            frame.createForResult(new CreateAuctionView());
-        });
-        add(createAuctionButton);
-        
+               
         menuBar = new JMenuBar();
         accountMenu = new JMenu("Conta");
         mainMenu = new JMenu("Menu");
@@ -90,11 +81,21 @@ public class HomeView extends BaseView implements Home.View {
         addValue.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Window.create(new InjectMoneyView());
+				frame.createForResult(new InjectMoneyView());
 			}
         });
+        
+        createAuction.addActionListener(e -> {
+            frame.createForResult(new CreateAuctionView());
+        });
     }
-
+   
+    @Override
+    public void setResult(Object result) {	
+    	super.setResult(result);
+    	accountValueLabel.setText("R$ "+Double.toString((double) result).format("%.2f", result));
+    }
+    
     @Override
     public void onPostCreated() {
         super.onPostCreated();

@@ -64,7 +64,6 @@ public class Database {
 			String currentLine;
 			
 			while ((currentLine = bufferedReader.readLine()) != null) {
-				
 				if (currentLine.equals(oldLine)) {
 					inputBuffer.append(newLine);
 					inputBuffer.append('\n');
@@ -74,7 +73,6 @@ public class Database {
 				}
 			}
 			String inputString = inputBuffer.toString();
-			System.out.println(inputString);
 			bufferedReader.close();	
 			reader.close();
 			

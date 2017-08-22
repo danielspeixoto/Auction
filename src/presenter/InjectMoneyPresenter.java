@@ -28,8 +28,8 @@ public class InjectMoneyPresenter implements InjectMoney.Presenter {
 	}
 
 	@Override
-	public void onInjectSuccess() {
-		view.onInjectSuccess();	
+	public void onInjectSuccess(double newBalance) {
+		view.onInjectSuccess(newBalance);	
 	}
 
 }
