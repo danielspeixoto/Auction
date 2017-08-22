@@ -10,18 +10,21 @@ import javax.swing.*;
 
 public class CreateItemView extends BaseView implements CreateItem.View {
 
+	private InputField nameField;
     private InputField descriptionField;
     private JButton submitButton;
     private CreateItem.Presenter presenter;
 
     public CreateItemView() {
         super();
-        descriptionField = new InputField("Nome");
-        descriptionField.setLocation(5, 5);
+        nameField = new InputField("Nome");
+        nameField.setLocation(10, 10);
+        descriptionField = new InputField("Descrição");
+        descriptionField.setLocation(10, 50);
         submitButton = new JButton("Salvar");
-        submitButton.setBounds(20, 20, 50, 50);
+        submitButton.setBounds(20, 90, 50, 50);
         submitButton.addActionListener(e ->
-                presenter.createItem(new Item(Global.getCurrentUser().getId(), descriptionField.getText()))
+                presenter.createItem(new Item(Global.getCurrentUser().getId(), nameField.getText(), descriptionField.getText()))
         );
         add(descriptionField);
         add(submitButton);

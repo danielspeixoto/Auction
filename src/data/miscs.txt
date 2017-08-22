@@ -1,13 +1,2 @@
-1,0,Jaca
-2,0,Bola
-3,0,Bola
-4,0,Espada
-5,0,jaca
-6,0,dsfsd
-7,4,Ovo Esquerdo de Peixoto
-8,4,fsdf,null,null,null,null,null
-9,4,kkk,null,null,null,null,null
-10,4,hjfh,null,null,null,null,null
-11,4,gbjgbhj,null,null,null,null,null
-12,4,misk,null,null,null,null,null
-13,4,nomezin,desczin,null,null,null,null,null
+1,4,Dildo Rosa,Um dildo bem grande e bem rosa,12.0,4.0,4.0,6.4,Caixa de papelão
+2,4,Camisinha Usada Pelo Faustão,Uma camisinha usada pelo grande faustão em uma de suas aventuras sexuais,22.0,3.0,3.0,0.2,Um saquinho de plástico
