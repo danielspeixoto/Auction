@@ -1,10 +1,15 @@
 package util;
 
+import model.pojo.Account;
 import model.pojo.User;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+
+import mock.AccountDatabase;
 
 public class Global {
 
@@ -46,11 +51,25 @@ public class Global {
                 e.printStackTrace();
             }
             if (currentLine != null) {
-                currentUser = Convert.userFrom(currentLine);
-                return true;
+            	try {
+            		currentUser = Convert.userFrom(currentLine);
+                    Account account = AccountDatabase.getAccount(currentUser.getId());
+                    currentUser.setAccount(account);               
+            	} catch (IOException e) {
+            		e.printStackTrace();
+            	} 
+            	return true;
             }
             return false;
         }
         return true;
+    }
+    
+    public static void logout() throws IOException {
+		FileWriter writer = new FileWriter(PATH_SESSION, false);
+		BufferedWriter bufferedWriter = new BufferedWriter(writer);
+		bufferedWriter.write(new String(""));
+		bufferedWriter.close();
+		writer.close();
     }
 }

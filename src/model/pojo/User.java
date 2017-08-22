@@ -7,8 +7,17 @@ public class User {
     private String name;
     private String email;
     private String password;
+    private Account account;
 
-    public User(String email, String password) {
+    public Account getAccount() {
+		return account;
+	}
+
+	public void setAccount(Account account) {
+		this.account = account;
+	}
+
+	public User(String email, String password) {
         this.email = email;
         this.password = password;
     }

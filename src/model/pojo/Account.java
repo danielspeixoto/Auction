@@ -10,6 +10,12 @@ public class Account {
 		this.frozenBalance = 0;
 	}
 	
+	public Account(int userId, double balance, double frozenBalance) {
+		this.userId = userId;
+		this.balance = balance;
+		this.frozenBalance = frozenBalance;
+	}
+	
 	public int getUserId() {
 		return userId;
 	}
