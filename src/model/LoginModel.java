@@ -1,7 +1,9 @@
 package model;
 
 import contract.Login;
+import mock.AccountDatabase;
 import mock.UserDatabase;
+import model.pojo.Account;
 import model.pojo.User;
 import util.Global;
 
@@ -19,7 +21,9 @@ public class LoginModel implements Login.Model {
         try {
             user = UserDatabase.login(email, password);
             if (user != null) {
-                Global.setCurrentUser(user);
+            	Account account = AccountDatabase.getAccount(user.getId());
+                user.setAccount(account);
+            	Global.setCurrentUser(user);
                 presenter.onLoginSuccess();
             } else {
                 presenter.onError("Email ou senha incorretos");

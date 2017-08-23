@@ -2,6 +2,7 @@ package view;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.List;
 
 
 public class Window extends JFrame {
@@ -14,6 +15,7 @@ public class Window extends JFrame {
         this.view = view;
         setContentPane(view);
         revalidate();
+        setIconImage((new ImageIcon("src//images//icon.png")).getImage());
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
     }

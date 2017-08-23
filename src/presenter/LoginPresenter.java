@@ -23,7 +23,7 @@ public class LoginPresenter implements Login.Presenter {
     public void login(String email, String password) {
         String result = Validate.email(email);
         if (result.equals(Validate.OK)) {
-            model.login(email, password);
+        	model.login(email, password);
         } else {
             view.showErrorDialog(result);
         }
