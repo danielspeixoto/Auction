@@ -5,6 +5,7 @@ import model.pojo.User;
 import presenter.CreateUserPresenter;
 import view.component.InputField;
 import view.component.PasswordField;
+import view.component.SimpleButton;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -17,7 +18,7 @@ public class CreateUserView extends BaseView implements CreateUser.View {
     private PasswordField passwordField;
     private InputField nameField;
     private PasswordField repeatPasswordField;
-    private JButton createAccountButton;
+    private SimpleButton createAccountButton;
 
     private CreateUser.Presenter presenter;
 
@@ -31,7 +32,7 @@ public class CreateUserView extends BaseView implements CreateUser.View {
         passwordField.setPosition(25, 150);
         repeatPasswordField = new PasswordField("Repita a senha");
         repeatPasswordField.setPosition(25, 200);
-        createAccountButton = new JButton("Criar conta");
+        createAccountButton = new SimpleButton("Criar conta");
         createAccountButton.setBounds(75, 280, 150, 30);
 
         add(emailField);
@@ -48,7 +49,7 @@ public class CreateUserView extends BaseView implements CreateUser.View {
                     emailField.getText(), passwordField.getText());
                     presenter.createUser(user);
                 } else {
-                    showErrorDialog("As senhas não são iguais");
+                    showErrorDialog("As senhas n�o coincidem");
                 }
             }
         });
@@ -61,6 +62,7 @@ public class CreateUserView extends BaseView implements CreateUser.View {
         super.onPostCreated();
         frame.setSize(300, 400);
         frame.setTitle("Criar Conta");
+        frame.setLocationRelativeTo(null);
         frame.setResizable(false);
     }
 }

@@ -3,6 +3,8 @@ package mock;
 import model.pojo.User;
 import util.Convert;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
 
 public class UserDatabase extends Database {
@@ -25,5 +27,5 @@ public class UserDatabase extends Database {
             }
         }
         return user;
-    }
+    } 
 }

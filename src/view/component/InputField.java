@@ -19,7 +19,7 @@ public class InputField extends TextField {
 	
     public InputField(String text) {
         super(text);
-        line = new LineBorder(Color.DARK_GRAY);
+        line = new LineBorder(new Color(189,189,189));
         empty = new EmptyBorder(0,5,0,5);
         compound = new CompoundBorder(line, empty);
         
@@ -31,7 +31,7 @@ public class InputField extends TextField {
         textField.addFocusListener(new FocusListener() {
 			@Override
 			public void focusLost(FocusEvent e) {
-				textField.setBorder(new CompoundBorder(new LineBorder(Color.DARK_GRAY), empty));
+				textField.setBorder(new CompoundBorder(new LineBorder(new Color(189,189,189)), empty));
 			}
 			
 			@Override

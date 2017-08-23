@@ -21,7 +21,7 @@ public class CreateAuctionView extends BaseView implements CreateAuction.View {
 
     public CreateAuctionView() {
         super();
-        minPercentForNewBidsField = new InputField("Quanto cada oferta deve aumentar em rela√ß√£o √† anterior?");
+        minPercentForNewBidsField = new InputField("Quanto cada oferta deve aumentar em relaÁ„o ‡ anterior?");
         minPercentForNewBidsField.setLocation(5, 5);
         expirationTimeField = new InputField("Tempo para em expira√ß√£o em minutos");
         expirationTimeField.setLocation(5, 300);
@@ -41,7 +41,6 @@ public class CreateAuctionView extends BaseView implements CreateAuction.View {
                         Integer.valueOf(minPercentForNewBidsField.getText()),
                         Integer.valueOf(expirationTimeField.getText()) * 60000,
                         itemId));
-
             }
 
         });
@@ -61,7 +60,8 @@ public class CreateAuctionView extends BaseView implements CreateAuction.View {
         super.onPostCreated();
         frame.setSize(800, 600);
         frame.setResizable(false);
-        frame.setTitle("Criar Leil√£o");
+        frame.setLocationRelativeTo(null);
+        frame.setTitle("Criar Leil„o");
         presenter = new CreateAuctionPresenter(this);
     }
 

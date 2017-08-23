@@ -40,7 +40,7 @@ public class Validate {
         String result = OK;
         email = email.toLowerCase().trim();
         if (!Pattern.matches(EMAIL_REGEX, email)) {
-            result = "Formato do email est√° incorreto";
+            result = "Formato de e-mail incorreto";
         }
         return result;
     }
@@ -48,7 +48,7 @@ public class Validate {
     public static String validate(Item item) {
         String result = OK;
         if (!Pattern.matches(NAME_REGEX, item.getDescription())) {
-            result = "A descri√ß√£o n√£o est√° escrita propriamente";
+            result = "DescriÁ„o inv·lida!";
             return result;
         }
         return result;
