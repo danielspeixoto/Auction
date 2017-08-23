@@ -15,7 +15,7 @@ public class Window extends JFrame {
         this.view = view;
         setContentPane(view);
         revalidate();
-        setIconImage((new ImageIcon("C:\\Users\\Mateus Barbosa\\Desktop\\icon.png")).getImage());
+        setIconImage((new ImageIcon("src//images//icon.png")).getImage());
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
     }

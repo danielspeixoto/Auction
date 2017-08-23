@@ -36,7 +36,7 @@ public class LoginView extends BaseView implements Login.View {
         logoPanel = new JPanel();  
         logoPanel.setLayout(null);  
         logoPanel.setBounds(75, 30, 150, 170);       
-        logo = new JLabel(new ImageIcon(ImageIO.read(new File("C:\\Users\\Mateus Barbosa\\Desktop\\auction.png"))));
+        logo = new JLabel(new ImageIcon(ImageIO.read(new File("src//images//auction.png"))));
         logo.setBounds(11, 0, 128, 128);
         titleLabel = new JLabel("Leilões & Cia");
         titleLabel.setFont(new Font("Arial", Font.ITALIC, 20));
@@ -45,9 +45,9 @@ public class LoginView extends BaseView implements Login.View {
         logoPanel.add(titleLabel);
         
         emailField = new InputField("Email");
-        emailField.setPosition(25, 210);
+        emailField.setPosition(22, 210);
         passwordField = new PasswordField("Senha");
-        passwordField.setPosition(25, 260);
+        passwordField.setPosition(22, 260);
         loginButton = new SimpleButton("Login");
         loginButton.setBounds(75, 320, 150, 30);
         createAccountButton = new SimpleButton("Criar conta");
