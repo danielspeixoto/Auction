@@ -21,6 +21,7 @@ public class InjectMoneyView extends BaseView implements InjectMoney.View  {
 		valueField = new InputField("Valor");
 		valueField.setPosition(25, 50);
 		injectMoneyButton = new SimpleButton("Injetar Valor");
+		injectMoneyButton.setLocation(75, 150);
 		add(valueField);
 		add(injectMoneyButton);
 		

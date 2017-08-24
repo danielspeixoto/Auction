@@ -13,7 +13,7 @@ public class SimpleButton extends JButton {
 	public SimpleButton(String text) {
 		super(text);
 		
-		this.setBounds(75, 150, 150, 30);
+		this.setSize(150, 30);
 		this.setForeground(Color.DARK_GRAY);
 		this.setBackground(Color.WHITE);
 		this.setBorder(new LineBorder(Color.DARK_GRAY));

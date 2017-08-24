@@ -7,6 +7,10 @@ import presenter.CreateAuctionPresenter;
 import util.Global;
 import util.Validate;
 import view.component.InputField;
+import view.component.SimpleButton;
+
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
 
 import javax.swing.*;
 
@@ -14,41 +18,42 @@ public class CreateAuctionView extends BaseView implements CreateAuction.View {
 
     private InputField minPercentForNewBidsField;
     private InputField expirationTimeField;
-    private JButton submitButton;
-    private JButton createItemButton;
+    private SimpleButton submitButton;
+    private SimpleButton createItemButton;
     private CreateAuction.Presenter presenter;
     private Integer itemId;
 
     public CreateAuctionView() {
         super();
-        minPercentForNewBidsField = new InputField("Quanto cada oferta deve aumentar em relação à anterior?");
-        minPercentForNewBidsField.setLocation(5, 5);
-        expirationTimeField = new InputField("Tempo para em expiraÃ§Ã£o em minutos");
-        expirationTimeField.setLocation(5, 300);
-        submitButton = new JButton("Salvar");
-        submitButton.setBounds(80, 80, 100, 100);
+        
+        minPercentForNewBidsField = new InputField("Diferença mínima entre lances (%)");
+        minPercentForNewBidsField.setLocation(25, 20);
+        expirationTimeField = new InputField("Tempo máximo sem lances (min)");
+        expirationTimeField.setLocation(25, 80);
+        createItemButton = new SimpleButton("Criar Item");
+        createItemButton.setLocation(75, 150);
+        createItemButton.addActionListener(e -> {
+            frame.createForResult(new CreateItemView());
+        });  
+        submitButton = new SimpleButton("Salvar");
+        submitButton.setLocation(75, 190);
         submitButton.addActionListener(e -> {
             String expirationTime = expirationTimeField.getText();
             String minPercentForNewBidsFields = minPercentForNewBidsField.getText();
             if (!Validate.integer(expirationTime).equals(Validate.OK)) {
-                showErrorDialog("Coloque nÃºmeros inteiros no campo de tempo para expiraÃ§Ã£o");
+                showErrorDialog("Insira números inteiros no campo de tempo para expiração");
             } else if (!Validate.integer(minPercentForNewBidsFields).equals(Validate.OK)) {
-                showErrorDialog("Coloque nÃºmeros inteiros no campo de quanto a oferta deve aumentar em relaÃ§Ã£o Ã  anterior");
+                showErrorDialog("Insira números inteiros no campo de diferença mínima entre lances");
             } else if (itemId == null) {
-                showErrorDialog("Associe um item para este leilÃ£o");
+                showErrorDialog("Associe um item para este leilão");
             } else {
                 presenter.createAuction(new Auction(Global.getCurrentUser().getId(),
                         Integer.valueOf(minPercentForNewBidsField.getText()),
                         Integer.valueOf(expirationTimeField.getText()) * 60000,
                         itemId));
             }
-
         });
-        createItemButton = new JButton("Criar Item");
-        createItemButton.setBounds(20, 20, 100, 100);
-        createItemButton.addActionListener(e -> {
-            frame.createForResult(new CreateItemView());
-        });
+        
         add(minPercentForNewBidsField);
         add(expirationTimeField);
         add(createItemButton);
@@ -58,7 +63,7 @@ public class CreateAuctionView extends BaseView implements CreateAuction.View {
     @Override
     public void onPostCreated() {
         super.onPostCreated();
-        frame.setSize(800, 600);
+        frame.setSize(300, 450);
         frame.setResizable(false);
         frame.setLocationRelativeTo(null);
         frame.setTitle("Criar Leilão");

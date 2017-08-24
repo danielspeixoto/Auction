@@ -113,7 +113,7 @@ public class HomeView extends BaseView implements Home.View {
         add(toolBar);
         
         auctionsList = new JPanel();
-        auctionsList.setBounds(0, 70, 800, 530);
+        auctionsList.setBounds(0, 105, 800, 530);
         auctionsList.setBackground(new Color(234,234,234));
         auctionsList.setLayout(new GridLayout());
         
@@ -147,17 +147,16 @@ public class HomeView extends BaseView implements Home.View {
         logoutToolBarButton.addActionListener(e -> {	
 			try {
 				Global.logout();	
-				close();
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}		
 		});
         
         editUser.addActionListener(e -> {
-        	JOptionPane.showMessageDialog(null, "Função disponível apenas para assinantes da versão Premium do Leilões & Cia.Inc", "Aviso", JOptionPane.ERROR_MESSAGE);
+        	JOptionPane.showOptionDialog(null, "Não disponível!", "Aviso", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, null, new Object[]{}, null); 	
 		});
         editToolBarButton.addActionListener(e -> {
-        	JOptionPane.showMessageDialog(null, "Função disponível apenas para assinantes da versão Premium do Leilões & Cia.Inc", "Aviso", JOptionPane.ERROR_MESSAGE);
+        	JOptionPane.showOptionDialog(null, "Não disponível!", "Aviso", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, null, new Object[]{}, null);
 		});
     }
    
