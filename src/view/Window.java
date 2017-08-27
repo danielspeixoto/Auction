@@ -13,6 +13,7 @@ public class Window extends JFrame {
     private Window(BaseView view) {
         super();
         this.view = view;
+        setSize(800, 600);
         setContentPane(view);
         revalidate();
         setIconImage((new ImageIcon("src//images//icon.png")).getImage());

@@ -10,10 +10,7 @@ import view.component.ToolBarButton;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.event.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -130,6 +127,12 @@ public class HomeView extends BaseView implements Home.View {
         list.setBounds(0, 0, 800, 530);
         list.setBackground(new Color(234,234,234));
         list.setCellRenderer(new ItemCellRenderer());
+        list.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                Window.create(new ItemView()).setResult(items.get(list.getSelectedIndex()));
+            }
+        });
         auctionsList.add(list);
         presenter.getAuctions();
         
