@@ -1,7 +1,10 @@
 package view;
 
 import contract.Home;
+import model.pojo.Item;
+import presenter.HomePresenter;
 import util.Global;
+import view.component.ItemCellRenderer;
 import view.component.ToolBarButton;
 
 import java.awt.Color;
@@ -13,6 +16,8 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -44,10 +49,15 @@ public class HomeView extends BaseView implements Home.View {
     private ToolBarButton addValueToolBarButton;
     private ToolBarButton auctionToolBarButton;
     private ToolBarButton logoutToolBarButton;
+
+    private JList list;
+    private ArrayList<Item> items = new ArrayList<>();
+
+    private Home.Presenter presenter;
     
     public HomeView() {
         super();
-        
+        presenter = new HomePresenter(this);
         Double value;             
         menuBar = new JMenuBar();
         menuBar.setBackground(new Color(234, 234, 234));
@@ -84,7 +94,7 @@ public class HomeView extends BaseView implements Home.View {
         toolBar.addSeparator();
         toolBar.add(logoutToolBarButton = new ToolBarButton("Sair","src//images//exit.png"));
         
-        userName = new JLabel("Olá, "+Global.getCurrentUser().getName().trim()+". Encontre aqui o que procura!");
+        userName = new JLabel("Olá, " + Global.getCurrentUser().getName().trim() + ". Encontre aqui o que procura!");
         userName.setForeground(Color.WHITE);
         userName.setBounds(20, 25, 480, 50);
         userName.setFont(new Font("Arial", Font.BOLD, 14)); 
@@ -114,8 +124,14 @@ public class HomeView extends BaseView implements Home.View {
         
         auctionsList = new JPanel();
         auctionsList.setBounds(0, 105, 800, 530);
-        auctionsList.setBackground(new Color(234,234,234));
-        auctionsList.setLayout(new GridLayout());
+        auctionsList.setLayout(null);
+
+        list = new JList();
+        list.setBounds(0, 0, 800, 530);
+        list.setBackground(new Color(234,234,234));
+        list.setCellRenderer(new ItemCellRenderer());
+        auctionsList.add(list);
+        presenter.getAuctions();
         
         add(auctionsList);
         
@@ -165,7 +181,13 @@ public class HomeView extends BaseView implements Home.View {
     	super.setResult(result);
     	accountValueLabel.setText("R$ "+Double.toString((double) result).format("%.2f", result));
     }
-    
+
+    @Override
+    public void onReceiveItem(Item item) {
+        items.add(item);
+        list.setListData(items.toArray());
+    }
+
     @Override
     public void onPostCreated() {
         super.onPostCreated();

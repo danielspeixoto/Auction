@@ -2,6 +2,7 @@ package presenter;
 
 import contract.Login;
 import model.LoginModel;
+import model.pojo.User;
 import util.Global;
 import util.Validate;
 import view.HomeView;
@@ -14,7 +15,7 @@ public class LoginPresenter implements Login.Presenter {
     public LoginPresenter(Login.View view) {
         this.view = view;
         if (Global.isLogged()) {
-            onLoginSuccess();
+            view.changePanel(new HomeView());
         }
         this.model = new LoginModel(this);
     }
@@ -30,7 +31,8 @@ public class LoginPresenter implements Login.Presenter {
     }
 
     @Override
-    public void onLoginSuccess() {
+    public void onLoginSuccess(User user) {
+        Global.setCurrentUser(user);
         view.changePanel(new HomeView());
     }
 

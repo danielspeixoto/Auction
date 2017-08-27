@@ -3,6 +3,7 @@ package presenter;
 import contract.CreateUser;
 import model.CreateUserModel;
 import model.pojo.User;
+import util.Global;
 import util.Validate;
 import view.HomeView;
 
@@ -21,19 +22,15 @@ public class CreateUserPresenter implements CreateUser.Presenter {
     public void createUser(User user) {
         String result = Validate.validate(user);
         if (result.equals(Validate.OK)) {
-           new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    model.createUser(user);
-                }
-           }).start();
+            model.createUser(user);
         } else {
             view.showErrorDialog(result);
         }
     }
 
     @Override
-    public void onCreateSuccess() {
+    public void onCreateSuccess(User user) {
+        Global.setCurrentUser(user);
     	view.changePanel(new HomeView());
     }
 
