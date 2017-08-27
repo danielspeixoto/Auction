@@ -7,12 +7,12 @@ public class Misc extends Item {
     private Double weight;
     private String containerDescription;
 
-    public Misc(Integer ownerId, String name, String description) {
-        super(ownerId, name, description);
+    public Misc(Integer ownerId, String name, String description, char type) {
+        super(ownerId, name, description, type);
     }
     
-    public Misc(Integer ownerId, String name, String description, Double length, Double width, Double height, Double weight, String containerDescription) {
-        super(ownerId, name, description);
+    public Misc(Integer ownerId, String name, String description, char type, Double length, Double width, Double height, Double weight, String containerDescription) {
+        super(ownerId, name, description, type);
         this.length = length;
         this.width = width;
         this.height = height;

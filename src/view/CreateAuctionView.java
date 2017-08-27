@@ -33,7 +33,7 @@ public class CreateAuctionView extends BaseView implements CreateAuction.View {
         createMiscButton = new SimpleButton("Criar Misc");
         createMiscButton.setLocation(75, 150);
         createMiscButton.addActionListener(e -> {
-            frame.createForResult(new CreateItemView());
+            frame.createForResult(new CreateMiscView());
         });  
         submitButton = new SimpleButton("Salvar");
         submitButton.setLocation(75, 190);
@@ -52,10 +52,6 @@ public class CreateAuctionView extends BaseView implements CreateAuction.View {
                         Integer.valueOf(expirationTimeField.getText()) * 60000, miscId));
             }
 
-        });
-        createMiscButton = new SimpleButton("Criar Misc");
-        createMiscButton.addActionListener(e -> {
-            frame.createForResult(new CreateMiscView());
         });
         
         add(minPercentForNewBidsField);

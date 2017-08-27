@@ -5,6 +5,7 @@ import model.pojo.Misc;
 import presenter.CreateMiscPresenter;
 import util.Global;
 import view.component.InputField;
+import view.component.SimpleButton;
 
 import javax.swing.*;
 
@@ -17,30 +18,30 @@ public class CreateMiscView extends BaseView implements CreateMisc.View {
 	private InputField heightField;
 	private InputField weightField;
 	private InputField containerDescriptionField;
-    private JButton submitButton;
+    private SimpleButton submitButton;
     private CreateMisc.Presenter presenter;
 
     public CreateMiscView() {
         super();
         nameField = new InputField("Nome");
-        nameField.setLocation(10, 10);
+        nameField.setLocation(25, 20);
         descriptionField = new InputField("Descrição");
-        descriptionField.setLocation(10, 50);
+        descriptionField.setLocation(25, 80);
         lengthField = new InputField("Comprimento");
-        lengthField.setLocation(10, 90);
+        lengthField.setLocation(25, 140);
         widthField = new InputField("Largura");
-        widthField.setLocation(10, 130);
+        widthField.setLocation(25, 200);
         heightField = new InputField("Altura");
-        heightField.setLocation(10, 170);
+        heightField.setLocation(25, 260);
         weightField = new InputField("Peso");
-        weightField.setLocation(10, 210);
+        weightField.setLocation(25, 320);
         containerDescriptionField = new InputField("Descrição do Container");
-        containerDescriptionField.setLocation(10, 250);
-        submitButton = new JButton("Salvar");
-        submitButton.setBounds(20, 290, 50, 50);
+        containerDescriptionField.setLocation(25, 380);
+        submitButton = new SimpleButton("Salvar");
+        submitButton.setLocation(75, 440);
         //setar atributos de misc q item n tem. consertar indexes de misc
         submitButton.addActionListener(e ->
-                presenter.createMisc(new Misc(Global.getCurrentUser().getId(), nameField.getText(), descriptionField.getText(), Double.parseDouble(lengthField.getText()), Double.parseDouble(widthField.getText()), Double.parseDouble(heightField.getText()), Double.parseDouble(weightField.getText()), containerDescriptionField.getText()))
+                presenter.createMisc(new Misc(Global.getCurrentUser().getId(), nameField.getText(), descriptionField.getText(), 'm', Double.parseDouble(lengthField.getText()), Double.parseDouble(widthField.getText()), Double.parseDouble(heightField.getText()), Double.parseDouble(weightField.getText()), containerDescriptionField.getText()))
         );
         add(nameField);
         add(descriptionField);
@@ -55,9 +56,10 @@ public class CreateMiscView extends BaseView implements CreateMisc.View {
     @Override
     public void onPostCreated() {
         super.onPostCreated();
-        frame.setSize(300, 400);
+        frame.setSize(300, 500);
         frame.setResizable(false);
         frame.setTitle("Criar Misc");
+        frame.setLocationRelativeTo(null);
         presenter = new CreateMiscPresenter(this);
     }
 
