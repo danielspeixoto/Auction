@@ -4,5 +4,3 @@
 4,0,Espada
 5,0,jaca
 6,0,dsfsd
-7,4,Ovo Esquerdo de Peixoto
-8,4,asdasd

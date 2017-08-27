@@ -2,22 +2,30 @@ package view;
 
 import contract.Home;
 import util.Global;
+import view.component.ToolBarButton;
 
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.io.File;
 import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 
 public class HomeView extends BaseView implements Home.View {
 
     private JMenuBar menuBar;
-    private JMenu accountMenu;
     private JMenu mainMenu;
+    private JMenu editMenu;
+    private JMenu accountMenu;
     private JMenu auctionMenu;
+    private JMenu helpMenu;
     private JMenuItem addValue;
     private JMenuItem editUser;
     private JMenuItem logOut;
@@ -30,37 +38,58 @@ public class HomeView extends BaseView implements Home.View {
     private JPanel homeHeader;
     private JPanel auctionsList;
     private JSeparator separator;
-  
+
+    private JToolBar toolBar;
+    private ToolBarButton editToolBarButton;
+    private ToolBarButton addValueToolBarButton;
+    private ToolBarButton auctionToolBarButton;
+    private ToolBarButton logoutToolBarButton;
+    
     public HomeView() {
         super();
         
-        Double value;
+        Double value;             
         menuBar = new JMenuBar();
         menuBar.setBackground(new Color(234, 234, 234));
-        accountMenu = new JMenu("Conta");
-        mainMenu = new JMenu("Menu");
+        mainMenu = new JMenu("Arquivo");
+        editMenu = new JMenu("Editar");
+        accountMenu = new JMenu("Conta"); 
         auctionMenu = new JMenu("Leilão");
+        helpMenu = new JMenu("Ajuda");
         addValue = new JMenuItem("Adicionar Valor");
         editUser = new JMenuItem("Editar Perfil");
         createAuction = new JMenuItem("Criar Leilão");
-        separator = new JSeparator();
         logOut = new JMenuItem("Sair");
         
         menuBar.add(mainMenu);
+        menuBar.add(editMenu);
         menuBar.add(accountMenu);
         menuBar.add(auctionMenu);
+        menuBar.add(helpMenu);
         accountMenu.add(addValue);
         auctionMenu.add(createAuction);
-        mainMenu.add(editUser);
-        mainMenu.add(separator);
+        editMenu.add(editUser);
         mainMenu.add(logOut);
+        
+        toolBar = new JToolBar();
+        toolBar.setBounds(0, 0, 800, 35);
+        toolBar.setBackground(new Color(234, 234, 234));   
+        toolBar.setFloatable(false);
+        toolBar.addSeparator();
+        toolBar.add(auctionToolBarButton = new ToolBarButton("Criar Leilão","src//images//auction-icon.png"));
+        toolBar.addSeparator();
+        toolBar.add(addValueToolBarButton = new ToolBarButton("Injetar Valor","src//images//piggy-bank.png"));
+        toolBar.addSeparator();
+        toolBar.add(editToolBarButton = new ToolBarButton("Editar Perfil","src//images//edit.png"));
+        toolBar.addSeparator();
+        toolBar.add(logoutToolBarButton = new ToolBarButton("Sair","src//images//exit.png"));
         
         userName = new JLabel("Olá, "+Global.getCurrentUser().getName().trim()+". Encontre aqui o que procura!");
         userName.setForeground(Color.WHITE);
         userName.setBounds(20, 25, 480, 50);
         userName.setFont(new Font("Arial", Font.BOLD, 14)); 
         homeHeader = new JPanel();
-        homeHeader.setBounds(0, 0, 800, 70);
+        homeHeader.setBounds(0, 35, 800, 70);
         homeHeader.setBackground(Color.DARK_GRAY);
         homeHeader.setLayout(null);
         programNameLabel = new JLabel("Leilões & Cia");
@@ -81,42 +110,53 @@ public class HomeView extends BaseView implements Home.View {
         homeHeader.add(accountValueLabel);
         homeHeader.add(accountValueDescriptionLabel);
         add(homeHeader);
+        add(toolBar);
         
         auctionsList = new JPanel();
-        auctionsList.setBounds(0, 70, 800, 530);
+        auctionsList.setBounds(0, 105, 800, 530);
         auctionsList.setBackground(new Color(234,234,234));
         auctionsList.setLayout(new GridLayout());
         
         add(auctionsList);
         
-        addValue.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				frame.createForResult(new InjectMoneyView());
-			}
+        addValue.addActionListener(e -> {
+			frame.createForResult(new InjectMoneyView());	
+        });
+        
+        addValueToolBarButton.addActionListener(e -> {
+			frame.createForResult(new InjectMoneyView());	
         });
         
         createAuction.addActionListener(e -> {
             frame.createForResult(new CreateAuctionView());
         });
         
-        logOut.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e)  {	
-				try {
-					Global.logout();	
-					close();
-				} catch (IOException e1) {
-					e1.printStackTrace();
-				}		
-			}
+        auctionToolBarButton.addActionListener(e -> {
+            frame.createForResult(new CreateAuctionView());
+        });
+        
+        logOut.addActionListener(e -> {	
+			try {
+				Global.logout();	
+				close();
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}		
 		});
         
-        editUser.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null, "Função disponível apenas para assinantes da versão Premium do Leilões & Cia.Inc", "Aviso", JOptionPane.ERROR_MESSAGE);
-			}
+        logoutToolBarButton.addActionListener(e -> {	
+			try {
+				Global.logout();	
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}		
+		});
+        
+        editUser.addActionListener(e -> {
+        	JOptionPane.showOptionDialog(null, "Não disponível!", "Aviso", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, null, new Object[]{}, null); 	
+		});
+        editToolBarButton.addActionListener(e -> {
+        	JOptionPane.showOptionDialog(null, "Não disponível!", "Aviso", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, null, new Object[]{}, null);
 		});
     }
    

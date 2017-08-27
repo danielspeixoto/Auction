@@ -71,5 +71,6 @@ public class Global {
 		bufferedWriter.write(new String(""));
 		bufferedWriter.close();
 		writer.close();
+		System.exit(0);
     }
 }

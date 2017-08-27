@@ -5,6 +5,7 @@ import model.pojo.Item;
 import presenter.CreateItemPresenter;
 import util.Global;
 import view.component.InputField;
+import view.component.SimpleButton;
 
 import javax.swing.*;
 
@@ -12,7 +13,7 @@ public class CreateItemView extends BaseView implements CreateItem.View {
 
 	private InputField nameField;
     private InputField descriptionField;
-    private JButton submitButton;
+    private SimpleButton submitButton;
     private CreateItem.Presenter presenter;
 
     public CreateItemView() {
@@ -23,6 +24,8 @@ public class CreateItemView extends BaseView implements CreateItem.View {
         descriptionField.setLocation(10, 50);
         submitButton = new JButton("Salvar");
         submitButton.setBounds(20, 90, 50, 50);
+        submitButton = new SimpleButton("Salvar");
+        submitButton.setLocation(75, 80);
         submitButton.addActionListener(e ->
                 presenter.createItem(new Item(Global.getCurrentUser().getId(), nameField.getText(), descriptionField.getText()))
         );
@@ -33,8 +36,9 @@ public class CreateItemView extends BaseView implements CreateItem.View {
     @Override
     public void onPostCreated() {
         super.onPostCreated();
-        frame.setSize(300, 400);
+        frame.setSize(300, 450);
         frame.setResizable(false);
+        frame.setLocationRelativeTo(null);
         frame.setTitle("Criar Item");
         presenter = new CreateItemPresenter(this);
     }

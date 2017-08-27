@@ -3,3 +3,4 @@
 3,4,Pentelho de Barbosa,Kk eae men,0.4,0.4,0.4,0.05,Um saquinho plástico
 4,4,not an item,def not an item,12.0,12.0,12.0,123.0,container of not an item
 5,4,asd,asd,2.0,2.0,2.0,2.0,asd
+6,4,nmisc,dmisc,12.0,12.0,12.0,12.0,dmisc

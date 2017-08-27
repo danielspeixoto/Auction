@@ -4,55 +4,61 @@ import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
-public class SimpleButton extends JButton {
-
-	public SimpleButton(String text) {
-		super(text);
+public class ToolBarButton extends JButton {
+	
+	public ToolBarButton(String tooltip, String path) {
+		super();
 		
-		this.setSize(150, 30);
-		this.setForeground(Color.DARK_GRAY);
-		this.setBackground(Color.WHITE);
-		this.setBorder(new LineBorder(Color.DARK_GRAY));
-		this.setFocusable(false);
+		this.setSize(32, 32);
+        this.setToolTipText(tooltip);
+        this.setBackground(new Color(234, 234, 234));
+        this.setBorder((new EmptyBorder(0,0,0,0)));
+        this.setFocusable(false);
+        
+        try {
+			this.setIcon(new ImageIcon(ImageIO.read(new File(path))));
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		
 		
 		this.addMouseListener(new MouseListener() {
-			
 			@Override
 			public void mouseExited(MouseEvent e) {
-				setForeground(Color.DARK_GRAY);
-				setBackground(Color.WHITE);
+				setBackground(new Color(234, 234, 234));
 				setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 			}
 			
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				setForeground(Color.WHITE);
-				setBackground(Color.DARK_GRAY);
+				setBackground(new Color(210,210,210));
 				setCursor(new Cursor(Cursor.HAND_CURSOR));
 			}
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				setForeground(Color.WHITE);
-				setBackground(Color.DARK_GRAY);
+				setBackground(new Color(234, 234, 234));
 				setCursor(new Cursor(Cursor.HAND_CURSOR));
 			}
 
 			@Override
 			public void mousePressed(MouseEvent e) {
-				setForeground(Color.WHITE);
-				setBackground(Color.DARK_GRAY);
+				setBackground(new Color(234, 234, 234));
 				setCursor(new Cursor(Cursor.HAND_CURSOR));
 			}
 
 			@Override
 			public void mouseReleased(MouseEvent arg0) {
 				// TODO Auto-generated method stub
-				
 			}
 		});
 	}
