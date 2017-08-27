@@ -19,11 +19,9 @@ public class CreateItemView extends BaseView implements CreateItem.View {
     public CreateItemView() {
         super();
         nameField = new InputField("Nome");
-        nameField.setLocation(10, 10);
+        nameField.setLocation(25, 20);
         descriptionField = new InputField("Descrição");
         descriptionField.setLocation(10, 50);
-        submitButton = new JButton("Salvar");
-        submitButton.setBounds(20, 90, 50, 50);
         submitButton = new SimpleButton("Salvar");
         submitButton.setLocation(75, 80);
         submitButton.addActionListener(e ->

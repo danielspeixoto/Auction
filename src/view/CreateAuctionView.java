@@ -54,7 +54,6 @@ public class CreateAuctionView extends BaseView implements CreateAuction.View {
 
         });
         createMiscButton = new SimpleButton("Criar Misc");
-        createMiscButton.setBounds(20, 20, 100, 100);
         createMiscButton.addActionListener(e -> {
             frame.createForResult(new CreateMiscView());
         });
