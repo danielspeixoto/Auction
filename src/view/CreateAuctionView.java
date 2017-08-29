@@ -5,7 +5,7 @@ import model.pojo.Auction;
 import model.pojo.Item;
 import model.pojo.Misc;
 import model.pojo.Fluid;
-//import model.pojo.Vehicle;
+import model.pojo.Vehicle;
 //import model.pojo.Realty;
 import presenter.CreateAuctionPresenter;
 import util.Global;
@@ -25,7 +25,7 @@ public class CreateAuctionView extends BaseView implements CreateAuction.View {
     private SimpleButton submitButton;
     private SimpleButton createMiscButton;
     private SimpleButton createFluidButton;
-    //private SimpleButton createVehicleButton;
+    private SimpleButton createVehicleButton;
     //private SimpleButton createRealtyButton;
     private CreateAuction.Presenter presenter;
     private Integer itemId;
@@ -38,27 +38,27 @@ public class CreateAuctionView extends BaseView implements CreateAuction.View {
         expirationTimeField = new InputField("Tempo máximo sem lances (min)");
         expirationTimeField.setLocation(25, 80);
         createMiscButton = new SimpleButton("Criar Misc");
-        createMiscButton.setLocation(75, 150);
+        createMiscButton.setLocation(75, 140);
         createMiscButton.addActionListener(e -> {
             frame.createForResult(new CreateMiscView());
         });
         createFluidButton = new SimpleButton("Criar Fluido");
-        createFluidButton.setLocation(75, 220);
+        createFluidButton.setLocation(75, 190);
         createFluidButton.addActionListener(e -> {
             frame.createForResult(new CreateFluidView());
         });  
-//        createVehicleButton = new SimpleButton("Criar Veiculo");
-//        createVehicleButton.setLocation(75, 290);
-//        createVehicleButton.addActionListener(e -> {
-//            frame.createForResult(new CreateVehicleView());
-//        });  
+        createVehicleButton = new SimpleButton("Criar Veiculo");
+        createVehicleButton.setLocation(75, 240);
+        createVehicleButton.addActionListener(e -> {
+            frame.createForResult(new CreateVehicleView());
+        });  
 //        createRealtyButton = new SimpleButton("Criar Imovel");
-//        createRealtyButton.setLocation(75, 360);
+//        createRealtyButton.setLocation(75, 290);
 //        createRealtyButton.addActionListener(e -> {
 //            frame.createForResult(new CreateRealtyView());
 //        });  
         submitButton = new SimpleButton("Salvar");
-        submitButton.setLocation(75, 400);
+        submitButton.setLocation(75, 360);
         submitButton.addActionListener(e -> {
             String expirationTime = expirationTimeField.getText();
             String minPercentForNewBidsFields = minPercentForNewBidsField.getText();
@@ -80,7 +80,7 @@ public class CreateAuctionView extends BaseView implements CreateAuction.View {
         add(expirationTimeField);
         add(createMiscButton);
         add(createFluidButton);
-        //add(createVehicleButton);
+        add(createVehicleButton);
         //add(createRealtyButton);
         add(submitButton);
     }
