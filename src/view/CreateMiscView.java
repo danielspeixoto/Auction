@@ -39,7 +39,6 @@ public class CreateMiscView extends BaseView implements CreateMisc.View {
         containerDescriptionField.setLocation(25, 380);
         submitButton = new SimpleButton("Salvar");
         submitButton.setLocation(75, 440);
-        //setar atributos de misc q item n tem. consertar indexes de misc
         submitButton.addActionListener(e ->
                 presenter.createMisc(new Misc(Global.getCurrentUser().getId(), nameField.getText(), descriptionField.getText(), 'm', Double.parseDouble(lengthField.getText()), Double.parseDouble(widthField.getText()), Double.parseDouble(heightField.getText()), Double.parseDouble(weightField.getText()), containerDescriptionField.getText()))
         );

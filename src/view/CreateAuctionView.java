@@ -2,10 +2,11 @@ package view;
 
 import contract.CreateAuction;
 import model.pojo.Auction;
+import model.pojo.Item;
 import model.pojo.Misc;
 import model.pojo.Fluid;
-import model.pojo.Vehicle;
-import model.pojo.Realty;
+//import model.pojo.Vehicle;
+//import model.pojo.Realty;
 import presenter.CreateAuctionPresenter;
 import util.Global;
 import util.Validate;
@@ -24,10 +25,10 @@ public class CreateAuctionView extends BaseView implements CreateAuction.View {
     private SimpleButton submitButton;
     private SimpleButton createMiscButton;
     private SimpleButton createFluidButton;
-    private SimpleButton createVehicleButton;
-    private SimpleButton createRealtyButton;
+    //private SimpleButton createVehicleButton;
+    //private SimpleButton createRealtyButton;
     private CreateAuction.Presenter presenter;
-    private Integer miscId;
+    private Integer itemId;
 
     public CreateAuctionView() {
         super();
@@ -46,16 +47,16 @@ public class CreateAuctionView extends BaseView implements CreateAuction.View {
         createFluidButton.addActionListener(e -> {
             frame.createForResult(new CreateFluidView());
         });  
-        createVehicleButton = new SimpleButton("Criar Veiculo");
-        createVehicleButton.setLocation(75, 290);
-        createVehicleButton.addActionListener(e -> {
-            frame.createForResult(new CreateVehicleView());
-        });  
-        createRealtyButton = new SimpleButton("Criar Imovel");
-        createRealtyButton.setLocation(75, 360);
-        createRealtyButton.addActionListener(e -> {
-            frame.createForResult(new CreateRealtyView());
-        });  
+//        createVehicleButton = new SimpleButton("Criar Veiculo");
+//        createVehicleButton.setLocation(75, 290);
+//        createVehicleButton.addActionListener(e -> {
+//            frame.createForResult(new CreateVehicleView());
+//        });  
+//        createRealtyButton = new SimpleButton("Criar Imovel");
+//        createRealtyButton.setLocation(75, 360);
+//        createRealtyButton.addActionListener(e -> {
+//            frame.createForResult(new CreateRealtyView());
+//        });  
         submitButton = new SimpleButton("Salvar");
         submitButton.setLocation(75, 400);
         submitButton.addActionListener(e -> {
@@ -65,12 +66,12 @@ public class CreateAuctionView extends BaseView implements CreateAuction.View {
                 showErrorDialog("Insira números inteiros no campo de tempo para expiração");
             } else if (!Validate.integer(minPercentForNewBidsFields).equals(Validate.OK)) {
                 showErrorDialog("Insira números inteiros no campo de diferença mínima entre lances");
-            } else if (miscId == null) {
-                showErrorDialog("Associe um misc para este leilÃ£o");
+            } else if (itemId == null) {
+                showErrorDialog("Associe um item para este leilÃ£o");
             } else {
                 presenter.createAuction(new Auction(Global.getCurrentUser().getId(),
                         Integer.valueOf(minPercentForNewBidsField.getText()),
-                        Integer.valueOf(expirationTimeField.getText()) * 60000, miscId));
+                        Integer.valueOf(expirationTimeField.getText()) * 60000, itemId));
             }
 
         });
@@ -78,6 +79,9 @@ public class CreateAuctionView extends BaseView implements CreateAuction.View {
         add(minPercentForNewBidsField);
         add(expirationTimeField);
         add(createMiscButton);
+        add(createFluidButton);
+        //add(createVehicleButton);
+        //add(createRealtyButton);
         add(submitButton);
     }
 
@@ -94,8 +98,8 @@ public class CreateAuctionView extends BaseView implements CreateAuction.View {
     @Override
     public void setResult(Object result) {
         super.setResult(result);
-        Misc misc = (Misc) result;
-        miscId = misc.getId();
-        frame.setTitle(misc.getDescription());
+        Item item = (Item) result;
+        itemId = item.getId();
+        frame.setTitle(item.getDescription());
     }
 }
