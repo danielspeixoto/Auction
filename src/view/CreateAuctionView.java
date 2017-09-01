@@ -26,7 +26,7 @@ public class CreateAuctionView extends BaseView implements CreateAuction.View {
     private SimpleButton createMiscButton;
     private SimpleButton createFluidButton;
     private SimpleButton createVehicleButton;
-    //private SimpleButton createRealtyButton;
+    private SimpleButton createRealtyButton;
     private CreateAuction.Presenter presenter;
     private Integer itemId;
 
@@ -52,11 +52,11 @@ public class CreateAuctionView extends BaseView implements CreateAuction.View {
         createVehicleButton.addActionListener(e -> {
             frame.createForResult(new CreateVehicleView());
         });  
-//        createRealtyButton = new SimpleButton("Criar Imovel");
-//        createRealtyButton.setLocation(75, 290);
-//        createRealtyButton.addActionListener(e -> {
-//            frame.createForResult(new CreateRealtyView());
-//        });  
+        createRealtyButton = new SimpleButton("Criar Imovel");
+        createRealtyButton.setLocation(75, 290);
+        createRealtyButton.addActionListener(e -> {
+            frame.createForResult(new CreateRealtyView());
+        });  
         submitButton = new SimpleButton("Salvar");
         submitButton.setLocation(75, 360);
         submitButton.addActionListener(e -> {
@@ -81,7 +81,7 @@ public class CreateAuctionView extends BaseView implements CreateAuction.View {
         add(createMiscButton);
         add(createFluidButton);
         add(createVehicleButton);
-        //add(createRealtyButton);
+        add(createRealtyButton);
         add(submitButton);
     }
 

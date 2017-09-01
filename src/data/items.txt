@@ -10,3 +10,4 @@
 10,4,asd,asd,f,asd,1.0,1.0,1.0,1.0,1.0,1.0
 11,4,ss,ss,m,2.0,2.0,2.0,2.0,ss
 12,4,vtest,vtest,v,33,vtest,vtest,3,vtest,vtest,3,vtest,
+13,4,rtest,rtest,r,rtest,4.0,1997
