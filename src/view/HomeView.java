@@ -8,15 +8,10 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.io.File;
+import java.awt.event.KeyEvent;
 import java.io.IOException;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 
 public class HomeView extends BaseView implements Home.View {
 
@@ -37,7 +32,6 @@ public class HomeView extends BaseView implements Home.View {
     private JLabel userName;
     private JPanel homeHeader;
     private JPanel auctionsList;
-    private JSeparator separator;
 
     private JToolBar toolBar;
     private ToolBarButton editToolBarButton;
@@ -52,14 +46,23 @@ public class HomeView extends BaseView implements Home.View {
         menuBar = new JMenuBar();
         menuBar.setBackground(new Color(234, 234, 234));
         mainMenu = new JMenu("Arquivo");
+        mainMenu.setMnemonic(KeyEvent.VK_A);    
         editMenu = new JMenu("Editar");
-        accountMenu = new JMenu("Conta"); 
+        editMenu.setMnemonic(KeyEvent.VK_E);    
+        accountMenu = new JMenu("Conta");
+        accountMenu.setMnemonic(KeyEvent.VK_C);         
         auctionMenu = new JMenu("Leilão");
+        auctionMenu.setMnemonic(KeyEvent.VK_L);    
         helpMenu = new JMenu("Ajuda");
+        helpMenu.setMnemonic(KeyEvent.VK_U);    
         addValue = new JMenuItem("Adicionar Valor");
+        addValue.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q, ActionEvent.CTRL_MASK));
         editUser = new JMenuItem("Editar Perfil");
+        editUser.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E, ActionEvent.CTRL_MASK));
         createAuction = new JMenuItem("Criar Leilão");
+        createAuction.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_L, ActionEvent.CTRL_MASK));
         logOut = new JMenuItem("Sair");
+        logOut.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, ActionEvent.CTRL_MASK));
         
         menuBar.add(mainMenu);
         menuBar.add(editMenu);

@@ -31,7 +31,7 @@ public class CreateAuctionView extends BaseView implements CreateAuction.View {
         expirationTimeField = new InputField("Tempo máximo sem lances (min)");
         expirationTimeField.setLocation(25, 80);
         createItemButton = new SimpleButton("Criar Item");
-        createItemButton.setLocation(75, 150);
+        createItemButton.setLocation(75, 150);      
         createItemButton.addActionListener(e -> {
             frame.createForResult(new CreateItemView());
         });  

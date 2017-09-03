@@ -50,8 +50,10 @@ public class SimpleButton extends JButton {
 			}
 
 			@Override
-			public void mouseReleased(MouseEvent arg0) {
-				// TODO Auto-generated method stub
+			public void mouseReleased(MouseEvent e) {
+				setForeground(Color.WHITE);
+				setBackground(Color.DARK_GRAY);
+				setCursor(new Cursor(Cursor.HAND_CURSOR));
 				
 			}
 		});
