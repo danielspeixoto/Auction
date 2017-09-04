@@ -8,9 +8,11 @@ public class Auction implements Serializable {
     private Integer minPercentForNewBids;
     private long expirationTime;
     private long lastBidMillis;
-    private Integer lastBidderId;
+    private Integer lastBidderId = -1;
     private Integer itemId;
     private Integer ownerId;
+    private Item item;
+    private Double lastBid = 0.0;
 
     public Auction(Integer ownerId, Integer minPercentForNewBids, long expirationTime,
                    Integer itemId) {
@@ -18,6 +20,26 @@ public class Auction implements Serializable {
         this.expirationTime = expirationTime;
         this.itemId = itemId;
         this.ownerId = ownerId;
+    }
+
+    public Auction(Integer id, Integer minPercentForNewBids, long expirationTime,
+                   long lastBidMillis, Integer lastBidderId, Integer itemId, Integer ownerId, Double lastBid) {
+        this.id = id;
+        this.minPercentForNewBids = minPercentForNewBids;
+        this.expirationTime = expirationTime;
+        this.lastBidMillis = lastBidMillis;
+        this.lastBidderId = lastBidderId;
+        this.itemId = itemId;
+        this.ownerId = ownerId;
+        this.lastBid = lastBid;
+    }
+
+    public Item getItem() {
+        return item;
+    }
+
+    public void setItem(Item item) {
+        this.item = item;
     }
 
     public Integer getId() {
@@ -85,6 +107,7 @@ public class Auction implements Serializable {
                 lastBidMillis + "," +
                 lastBidderId + "," +
                 itemId + "," +
-                ownerId;
+                ownerId + "," +
+                lastBid;
     }
 }

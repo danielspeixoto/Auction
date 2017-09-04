@@ -6,13 +6,19 @@ public class Misc extends Item {
     private Double height;
     private Double weight;
     private String containerDescription;
+    public static final char TYPE = 'm';
 
-    public Misc(Integer ownerId, String name, String description, char type) {
-        super(ownerId, name, description, type);
+    public Misc(Integer ownerId, String name, String description, Double length, Double width, Double height, Double weight, String containerDescription) {
+        super(ownerId, name, description, TYPE);
+        this.length = length;
+        this.width = width;
+        this.height = height;
+        this.weight = weight;
+        this.containerDescription = containerDescription;
     }
-    
-    public Misc(Integer ownerId, String name, String description, char type, Double length, Double width, Double height, Double weight, String containerDescription) {
-        super(ownerId, name, description, type);
+
+    public Misc(Integer id, Integer ownerId, String name, String description, Double length, Double width, Double height, Double weight, String containerDescription) {
+        super(id, ownerId, name, description, TYPE);
         this.length = length;
         this.width = width;
         this.height = height;

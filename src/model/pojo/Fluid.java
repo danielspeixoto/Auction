@@ -9,13 +9,25 @@ public class Fluid extends Item {
 	private double volume;
 	private double radius;
 	private double weight;
+	public static final char TYPE = 'f';
 	
-	public Fluid(Integer ownerId, String name, String description, char type) {
-        super(ownerId, name, description, type);
-    }
-	
-	public Fluid(Integer ownerId, String name, String description, char type, String containerDescription, double containerLength, double containerWidth, double containerHeight, double volume, double radius, double weight) {
-		super(ownerId, name, description, type);
+	public Fluid(Integer ownerId, String name, String description, String containerDescription,
+				 double containerLength, double containerWidth, double containerHeight,
+				 double volume, double radius, double weight) {
+		super(ownerId, name, description, TYPE);
+		this.containerDescription = containerDescription;
+		this.containerLength = containerLength;
+		this.containerWidth = containerWidth;
+		this.containerHeight = containerHeight;
+		this.volume = volume;
+		this.radius = radius;
+		this.weight = weight;
+	}
+
+	public Fluid(Integer id, Integer ownerId, String name, String description, String containerDescription,
+				 double containerLength, double containerWidth, double containerHeight,
+				 double volume, double radius, double weight) {
+		super(id, ownerId, name, description, TYPE);
 		this.containerDescription = containerDescription;
 		this.containerLength = containerLength;
 		this.containerWidth = containerWidth;

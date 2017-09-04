@@ -32,6 +32,12 @@ public class CreateUserView extends BaseView implements CreateUser.View {
         passwordField.setPosition(25, 150);
         repeatPasswordField = new PasswordField("Repita a senha");
         repeatPasswordField.setPosition(25, 200);
+        repeatPasswordField.getTextField().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                createUser();
+            }
+        });
         createAccountButton = new SimpleButton("Criar conta");
         createAccountButton.setBounds(75, 280, 150, 30);
 
@@ -44,17 +50,21 @@ public class CreateUserView extends BaseView implements CreateUser.View {
         createAccountButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (passwordField.getText().equals(repeatPasswordField.getText())) {
-                    User user = new User(nameField.getText(),
-                    emailField.getText(), passwordField.getText());
-                    presenter.createUser(user);
-                } else {
-                    showErrorDialog("As senhas não coincidem");
-                }
+               createUser();
             }
         });
 
         presenter = new CreateUserPresenter(this);
+    }
+
+    private void createUser() {
+        if (passwordField.getText().equals(repeatPasswordField.getText())) {
+            User user = new User(nameField.getText(),
+                    emailField.getText(), passwordField.getText());
+                    presenter.createUser(user);
+        } else {
+            showErrorDialog("As senhas não coincidem");
+        }
     }
 
     @Override

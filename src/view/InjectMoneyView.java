@@ -1,18 +1,20 @@
 package view;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import contract.InjectMoney;
 import presenter.InjectMoneyPresenter;
 import view.component.InputField;
 import view.component.SimpleButton;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class InjectMoneyView extends BaseView implements InjectMoney.View  {
 
 	private InjectMoney.Presenter presenter;
 	private InputField valueField;
 	private SimpleButton injectMoneyButton;
+
+	public static final int INJECT_MONEY_SENDER = 1;
 	
 	
 	public InjectMoneyView() { 
@@ -36,7 +38,7 @@ public class InjectMoneyView extends BaseView implements InjectMoney.View  {
 	
 	@Override
 	public void onInjectSuccess(double newBalance) {
-		 frame.setResult(newBalance);
+		 frame.setResult(INJECT_MONEY_SENDER, newBalance);
 		 close();
 	}
 		

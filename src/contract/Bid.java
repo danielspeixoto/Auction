@@ -2,19 +2,18 @@ package contract;
 
 import model.pojo.Auction;
 
-public class CreateAuction {
+public class Bid {
 
     public interface View extends Base.View {
-        void onCreateSuccess();
+        void onBidSuccess();
     }
 
     public interface Presenter extends Base.Presenter {
-        void createAuction(Auction auction);
-        void onCreateSuccess();
+        void bid(Auction auction);
+        void onBidSuccess();
     }
 
     public interface Model extends Base.Model {
-        void createAuction(Auction auction);
+        void bid(Auction auction);
     }
-
 }
