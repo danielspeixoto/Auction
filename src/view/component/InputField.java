@@ -22,11 +22,11 @@ public class InputField extends TextField {
         line = new LineBorder(new Color(189,189,189));
         empty = new EmptyBorder(0,5,0,5);
         compound = new CompoundBorder(line, empty);
-        
+               
         textField = new JTextField(20);
         textField.setBounds(0, 20, 250, 25);
         textField.setForeground(Color.DARK_GRAY);
-        textField.setBorder(compound);
+        textField.setBorder(compound); 
         
         textField.addFocusListener(new FocusListener() {
 			@Override

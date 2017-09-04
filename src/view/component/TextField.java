@@ -5,7 +5,7 @@ import javax.swing.*;
 
 public abstract class TextField extends JPanel {
 
-    protected JTextField textField;
+    public JTextField textField;
     private JLabel label;
 
     public TextField(String text) {

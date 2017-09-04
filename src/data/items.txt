@@ -11,3 +11,4 @@
 11,4,ss,ss,m,2.0,2.0,2.0,2.0,ss
 12,4,vtest,vtest,v,33,vtest,vtest,3,vtest,vtest,3,vtest,
 13,4,rtest,rtest,r,rtest,4.0,1997
+14,2,Leilão Fiar Uno 1000,Fiatzinho lindo,v,180000,Fiat,Uno,2,Gasolina,Azul,5,1000,sal2lk3smlqkwlqwq

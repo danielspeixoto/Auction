@@ -5,6 +5,7 @@ import mock.AccountDatabase;
 import mock.Database;
 import mock.UserDatabase;
 import model.pojo.User;
+import util.Global;
 import model.pojo.Account;
 
 
@@ -24,7 +25,9 @@ public class CreateUserModel implements CreateUser.Model {
                 result = Database.insert(UserDatabase.PATH_USERS, user);
                 user.setId(result);
                 account.setUserId(result);
-                Database.insert(AccountDatabase.PATH_ACCOUNTS, account);         
+                Database.insert(AccountDatabase.PATH_ACCOUNTS, account); 
+                user.setAccount(account);
+            	Global.setCurrentUser(user);
                 presenter.onCreateSuccess();
             } else {
                 presenter.onError("O email já está cadastrado");

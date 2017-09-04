@@ -35,31 +35,36 @@ public class CreateAuctionView extends BaseView implements CreateAuction.View {
         
         minPercentForNewBidsField = new InputField("Diferença mínima entre lances (%)");
         minPercentForNewBidsField.setLocation(25, 20);
+        minPercentForNewBidsField.setSize(300,50);
+        minPercentForNewBidsField.textField.setSize(300,30);
         expirationTimeField = new InputField("Tempo máximo sem lances (min)");
         expirationTimeField.setLocation(25, 80);
+        expirationTimeField.setSize(300,50);
+        expirationTimeField.textField.setSize(300,30);
+        
      
         createMiscButton = new SimpleButton("Criar Misc");
-        createMiscButton.setLocation(75, 140);
+        createMiscButton.setBounds(25, 150, 140,30);
         createMiscButton.addActionListener(e -> {
             frame.createForResult(new CreateMiscView());
         });
         createFluidButton = new SimpleButton("Criar Fluido");
-        createFluidButton.setLocation(75, 190);
+        createFluidButton.setBounds(185, 150, 140,30);
         createFluidButton.addActionListener(e -> {
             frame.createForResult(new CreateFluidView());
         });  
         createVehicleButton = new SimpleButton("Criar Veiculo");
-        createVehicleButton.setLocation(75, 240);
+        createVehicleButton.setBounds(25, 195, 140,30);
         createVehicleButton.addActionListener(e -> {
             frame.createForResult(new CreateVehicleView());
         });  
         createRealtyButton = new SimpleButton("Criar Imovel");
-        createRealtyButton.setLocation(75, 290);
+        createRealtyButton.setBounds(185, 195, 140,30);
         createRealtyButton.addActionListener(e -> {
             frame.createForResult(new CreateRealtyView());
         });  
         submitButton = new SimpleButton("Salvar");
-        submitButton.setLocation(75, 360);
+        submitButton.setLocation(100, 360);
         submitButton.addActionListener(e -> {
             String expirationTime = expirationTimeField.getText();
             String minPercentForNewBidsFields = minPercentForNewBidsField.getText();
@@ -68,7 +73,7 @@ public class CreateAuctionView extends BaseView implements CreateAuction.View {
             } else if (!Validate.integer(minPercentForNewBidsFields).equals(Validate.OK)) {
                 showErrorDialog("Insira números inteiros no campo de diferença mínima entre lances");
             } else if (itemId == null) {
-                showErrorDialog("Associe um item para este leilÃ£o");
+                showErrorDialog("Associe um item para este leilão");
             } else {
                 presenter.createAuction(new Auction(Global.getCurrentUser().getId(),
                         Integer.valueOf(minPercentForNewBidsField.getText()),
@@ -89,7 +94,7 @@ public class CreateAuctionView extends BaseView implements CreateAuction.View {
     @Override
     public void onPostCreated() {
         super.onPostCreated();
-        frame.setSize(300, 450);
+        frame.setSize(350, 450);
         frame.setResizable(false);
         frame.setLocationRelativeTo(null);
         frame.setTitle("Criar Leilão");
