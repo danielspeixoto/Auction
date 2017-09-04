@@ -21,16 +21,31 @@ public class CreateRealtyView extends CreateItemView implements CreateRealty.Vie
         super();
         nameField = new InputField("Nome");
         nameField.setLocation(25, 20);
+        nameField.setSize(300,50);
+        nameField.textField.setSize(300,30);
+        
         descriptionField = new InputField("Descrição");
         descriptionField.setLocation(25, 80);
+        descriptionField.setSize(300,50);
+        descriptionField.textField.setSize(300,30);
+        
         locationField = new InputField("Localização");
         locationField.setLocation(25, 140);
+        locationField.setSize(300,50);
+        locationField.textField.setSize(300,30);
+        
         squareMetersField = new InputField("Metros Quadrados");
         squareMetersField.setLocation(25, 200);
+        squareMetersField.setSize(300,50);
+        squareMetersField.textField.setSize(300,30);
+        
         constructionYearField = new InputField("Ano de Construção");
         constructionYearField.setLocation(25, 260);
+        constructionYearField.setSize(300,50);
+        constructionYearField.textField.setSize(300,30);
+        
         submitButton = new SimpleButton("Salvar");
-        submitButton.setLocation(75, 320);
+        submitButton.setLocation(100, 360);
         submitButton.addActionListener(e ->
                 presenter.createRealty(new Realty(Global.getCurrentUser().getId(), nameField.getText(),
                         descriptionField.getText(), locationField.getText(),
@@ -48,7 +63,7 @@ public class CreateRealtyView extends CreateItemView implements CreateRealty.Vie
     @Override
     public void onPostCreated() {
         super.onPostCreated();
-        frame.setSize(300, 500);
+        frame.setSize(350, 450);
         frame.setResizable(false);
         frame.setTitle("Criar Realty");
         frame.setLocationRelativeTo(null);

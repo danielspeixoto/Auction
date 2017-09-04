@@ -25,21 +25,30 @@ public class CreateUserView extends BaseView implements CreateUser.View {
     public CreateUserView() {
         super();
         nameField = new InputField("Nome");
-        nameField.setPosition(25, 50);
+        nameField.setPosition(25, 30);
+        nameField.textField.setSize(250, 30);
+        nameField.setSize(250,50);
         emailField = new InputField("Email");
-        emailField.setPosition(25, 100);
+        emailField.setPosition(25, 90);
+        emailField.setSize(250,50);
+        emailField.textField.setSize(250, 30);
         passwordField = new PasswordField("Senha");
         passwordField.setPosition(25, 150);
+        passwordField.setSize(250,50);
+        passwordField.textField.setSize(250, 30);
         repeatPasswordField = new PasswordField("Repita a senha");
-        repeatPasswordField.setPosition(25, 200);
+        repeatPasswordField.setLocation(25, 210);
+        repeatPasswordField.setSize(250,50);
+        repeatPasswordField.textField.setSize(250, 30);
         repeatPasswordField.getTextField().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 createUser();
             }
         });
+
         createAccountButton = new SimpleButton("Criar conta");
-        createAccountButton.setBounds(75, 280, 150, 30);
+        createAccountButton.setBounds(75, 360, 150, 30);
 
         add(emailField);
         add(passwordField);
@@ -70,7 +79,7 @@ public class CreateUserView extends BaseView implements CreateUser.View {
     @Override
     public void onPostCreated() {
         super.onPostCreated();
-        frame.setSize(300, 400);
+        frame.setSize(300, 450);
         frame.setTitle("Criar Conta");
         frame.setLocationRelativeTo(null);
         frame.setResizable(false);

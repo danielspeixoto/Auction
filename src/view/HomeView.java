@@ -8,7 +8,11 @@ import view.component.AuctionCellRenderer;
 import view.component.ToolBarButton;
 
 import javax.swing.*;
+
+import com.sun.glass.events.KeyEvent;
+
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
@@ -33,7 +37,8 @@ public class HomeView extends BaseView implements Home.View {
     private JLabel accountValueDescriptionLabel;
     private JLabel userName;
     private JPanel homeHeader;
-    private JSeparator separator;
+    private JPanel auctionsList;
+
 
     private JToolBar toolBar;
     private ToolBarButton editToolBarButton;
@@ -54,14 +59,23 @@ public class HomeView extends BaseView implements Home.View {
         menuBar = new JMenuBar();
         menuBar.setBackground(new Color(234, 234, 234));
         mainMenu = new JMenu("Arquivo");
+        mainMenu.setMnemonic(KeyEvent.VK_A);    
         editMenu = new JMenu("Editar");
-        accountMenu = new JMenu("Conta"); 
+        editMenu.setMnemonic(KeyEvent.VK_E);    
+        accountMenu = new JMenu("Conta");
+        accountMenu.setMnemonic(KeyEvent.VK_C);         
         auctionMenu = new JMenu("Leilão");
+        auctionMenu.setMnemonic(KeyEvent.VK_L);    
         helpMenu = new JMenu("Ajuda");
+        helpMenu.setMnemonic(KeyEvent.VK_U);    
         addValue = new JMenuItem("Adicionar Valor");
+        addValue.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q, ActionEvent.CTRL_MASK));
         editUser = new JMenuItem("Editar Perfil");
+        editUser.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E, ActionEvent.CTRL_MASK));
         createAuction = new JMenuItem("Criar Leilão");
+        createAuction.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_L, ActionEvent.CTRL_MASK));
         logOut = new JMenuItem("Sair");
+        logOut.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, ActionEvent.CTRL_MASK));
         
         menuBar.add(mainMenu);
         menuBar.add(editMenu);

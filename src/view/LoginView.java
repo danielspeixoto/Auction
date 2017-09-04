@@ -45,16 +45,20 @@ public class LoginView extends BaseView implements Login.View {
         logoPanel.add(titleLabel);
         
         emailField = new InputField("Email");
-        emailField.setPosition(22, 210);
+        emailField.setLocation(22, 200);
+        emailField.setSize(250, 50);
+        emailField.textField.setSize(250, 30);
         passwordField = new PasswordField("Senha");
-        passwordField.setPosition(22, 260);
-
+        passwordField.setLocation(22, 255);
+        passwordField.setSize(250, 50);
+        passwordField.textField.setSize(250, 30);
         passwordField.getTextField().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 login();
             }
         });
+        
         loginButton = new SimpleButton("Login");
         loginButton.setBounds(75, 320, 150, 30);
         createAccountButton = new SimpleButton("Criar conta");
