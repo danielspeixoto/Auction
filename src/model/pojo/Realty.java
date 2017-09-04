@@ -4,13 +4,17 @@ public class Realty extends Item {
     private String location;
     private Double squareMeters;
     private int constructionYear;
-
-    public Realty(Integer ownerId, String name, String description, char type) {
-        super(ownerId, name, description, type);
-    }
+    public static final char TYPE = 'r';
     
-    public Realty(Integer ownerId, String name, String description, char type, String location, Double squareMeters, int constructionYear) {
-        super(ownerId, name, description, type);
+    public Realty(Integer id, Integer ownerId, String name, String description, String location, Double squareMeters, int constructionYear) {
+        super(id, ownerId, name, description, TYPE);
+        this.location = location;
+        this.squareMeters = squareMeters;
+        this.constructionYear = constructionYear;
+    }
+
+    public Realty(Integer ownerId, String name, String description, String location, Double squareMeters, int constructionYear) {
+        super(ownerId, name, description, TYPE);
         this.location = location;
         this.squareMeters = squareMeters;
         this.constructionYear = constructionYear;

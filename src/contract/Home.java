@@ -1,16 +1,17 @@
 package contract;
 
-import model.pojo.Item;
+import model.pojo.Auction;
 
 public class Home {
 
     public interface View extends Base.View {
-        void onReceiveItem(Item item);
+        void onReceiveAuction(Auction auction);
+        void clearAuctions();
     }
 
     public interface Presenter extends Base.Presenter {
-        void getAuctions();
-        void onReceiveItem(Item item);
+        void syncAuctions();
+        void onReceiveAuction(Auction auction);
     }
 
     public interface Model extends Base.Model {

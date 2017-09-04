@@ -2,7 +2,6 @@ package view;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.List;
 
 
 public class Window extends JFrame {
@@ -44,11 +43,11 @@ public class Window extends JFrame {
         create(view).setParent(this);
     }
 
-    public void setResult(Object object) {
+    public void setResult(int sender, Object object) {
         if (parent != null) {
-            parent.getView().setResult(object);
+            parent.getView().setResult(sender, object);
         } else {
-            view.setResult(object);
+            view.setResult(sender, object);
         }
     }
 

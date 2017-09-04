@@ -3,23 +3,17 @@ package view;
 import contract.CreateAuction;
 import model.pojo.Auction;
 import model.pojo.Item;
-import model.pojo.Misc;
-import model.pojo.Fluid;
-import model.pojo.Vehicle;
-//import model.pojo.Realty;
 import presenter.CreateAuctionPresenter;
 import util.Global;
 import util.Validate;
 import view.component.InputField;
 import view.component.SimpleButton;
 
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
-
-import javax.swing.*;
+//import model.pojo.Realty;
 
 public class CreateAuctionView extends BaseView implements CreateAuction.View {
 
+    private static final int CREATED_AUCTION_SENDER = 4;
     private InputField minPercentForNewBidsField;
     private InputField expirationTimeField;
     private SimpleButton submitButton;
@@ -96,10 +90,15 @@ public class CreateAuctionView extends BaseView implements CreateAuction.View {
     }
 
     @Override
-    public void setResult(Object result) {
-        super.setResult(result);
+    public void setResult(int sender, Object result) {
+        super.setResult(sender, result);
         Item item = (Item) result;
         itemId = item.getId();
-        frame.setTitle(item.getDescription());
+        frame.setTitle(item.getName());
+    }
+
+    @Override
+    public void onCreateSuccess() {
+        frame.setResult(CREATED_AUCTION_SENDER, null);
     }
 }

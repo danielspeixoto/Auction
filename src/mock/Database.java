@@ -2,20 +2,14 @@ package mock;
 
 import util.WriteToFile;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-
-import javax.swing.JOptionPane;
+import java.io.*;
 
 public class Database {
 
 	public static final int ERROR = -1;
 	public static final int INDEX_ID = 0;
+
+	public static final String SPLIT = "#";
 
 	// Olha todo o documento e verifica qual foi o último id inserido
 	// e salva no sistema
@@ -26,7 +20,7 @@ public class Database {
             while ((line = bufferedReader.readLine()) != null) {
                 last = line;
             }
-            return Integer.valueOf(last.split(",")[INDEX_ID]);
+            return Integer.valueOf(last.split(SPLIT)[INDEX_ID]);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -35,7 +29,7 @@ public class Database {
 
 	public static int insert(String path, Object object) throws IOException {
 		int id = getLastId(path) + 1;
-		WriteToFile.write(path, id + "," + object.toString() + "\n");
+		WriteToFile.write(path, id + SPLIT + object.toString() + SPLIT + "\n");
 		return id;
 	}
 
@@ -46,7 +40,7 @@ public class Database {
 		BufferedReader bufferedReader = new BufferedReader(reader);
 		String currentLine;
 		while ((currentLine = bufferedReader.readLine()) != null) {
-			if (currentLine.split(",")[index].equals(value)) {
+			if (currentLine.split(SPLIT)[index].equals(value)) {
 				break;
 			}
 		}

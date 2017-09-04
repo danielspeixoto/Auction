@@ -1,9 +1,9 @@
 package model;
 
 import contract.Home;
-import mock.ItemDatabase;
-import model.pojo.Item;
-import util.ItemTransmitter;
+import mock.AuctionDatabase;
+import model.pojo.Auction;
+import util.Transmitter;
 
 public class HomeModel implements Home.Model {
 
@@ -15,10 +15,10 @@ public class HomeModel implements Home.Model {
 
     @Override
     public void getAuctions() {
-        ItemDatabase.getAll(new ItemTransmitter() {
+        AuctionDatabase.getAll(new Transmitter() {
             @Override
-            public void onItemReceived(Item item) {
-                presenter.onReceiveItem(item);
+            public void onReceived(Object obj) {
+                presenter.onReceiveAuction((Auction)obj);
             }
         });
     }

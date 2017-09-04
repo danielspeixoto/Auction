@@ -7,9 +7,7 @@ import util.Global;
 import view.component.InputField;
 import view.component.SimpleButton;
 
-import javax.swing.*;
-
-public class CreateVehicleView extends BaseView implements CreateVehicle.View {
+public class CreateVehicleView extends CreateItemView implements CreateVehicle.View {
 
 	private InputField nameField;
 	private InputField descriptionField;
@@ -52,7 +50,11 @@ public class CreateVehicleView extends BaseView implements CreateVehicle.View {
         submitButton = new SimpleButton("Salvar");
         submitButton.setLocation(75, 680);
         submitButton.addActionListener(e ->
-                presenter.createVehicle(new Vehicle(Global.getCurrentUser().getId(), nameField.getText(), descriptionField.getText(), 'v', mileageField.getText(), brandField.getText(), modelField.getText(), Integer.parseInt(doorsField.getText()), fuelField.getText(), colorField.getText(), Integer.parseInt(seatsField.getText()), motorDescriptionField.getText(), chassisField.getText()))
+                presenter.createVehicle(new Vehicle(Global.getCurrentUser().getId(), nameField.getText(),
+                        descriptionField.getText(), mileageField.getText(), brandField.getText(),
+                        modelField.getText(), Integer.parseInt(doorsField.getText()), fuelField.getText(),
+                        colorField.getText(), Integer.parseInt(seatsField.getText()), motorDescriptionField.getText(),
+                        chassisField.getText()))
         );
         add(nameField);
         add(descriptionField);
@@ -80,7 +82,7 @@ public class CreateVehicleView extends BaseView implements CreateVehicle.View {
 
     @Override
     public void onCreateSuccess(Vehicle vehicle) {
-        frame.setResult(vehicle);
+        super.sendResult(vehicle);
     }
 
 }

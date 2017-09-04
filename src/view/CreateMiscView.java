@@ -7,9 +7,7 @@ import util.Global;
 import view.component.InputField;
 import view.component.SimpleButton;
 
-import javax.swing.*;
-
-public class CreateMiscView extends BaseView implements CreateMisc.View {
+public class CreateMiscView extends CreateItemView implements CreateMisc.View {
 
 	private InputField nameField;
 	private InputField descriptionField;
@@ -40,7 +38,10 @@ public class CreateMiscView extends BaseView implements CreateMisc.View {
         submitButton = new SimpleButton("Salvar");
         submitButton.setLocation(75, 440);
         submitButton.addActionListener(e ->
-                presenter.createMisc(new Misc(Global.getCurrentUser().getId(), nameField.getText(), descriptionField.getText(), 'm', Double.parseDouble(lengthField.getText()), Double.parseDouble(widthField.getText()), Double.parseDouble(heightField.getText()), Double.parseDouble(weightField.getText()), containerDescriptionField.getText()))
+                presenter.createMisc(new Misc(Global.getCurrentUser().getId(), nameField.getText(),
+                        descriptionField.getText(), Double.parseDouble(lengthField.getText()),
+                        Double.parseDouble(widthField.getText()), Double.parseDouble(heightField.getText()),
+                        Double.parseDouble(weightField.getText()), containerDescriptionField.getText()))
         );
         add(nameField);
         add(descriptionField);
@@ -64,7 +65,7 @@ public class CreateMiscView extends BaseView implements CreateMisc.View {
 
     @Override
     public void onCreateSuccess(Misc misc) {
-        frame.setResult(misc);
+        super.sendResult(misc);
     }
 
 }

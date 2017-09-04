@@ -2,7 +2,7 @@ package presenter;
 
 import contract.Home;
 import model.HomeModel;
-import model.pojo.Item;
+import model.pojo.Auction;
 
 public class HomePresenter implements Home.Presenter {
 
@@ -15,13 +15,14 @@ public class HomePresenter implements Home.Presenter {
     }
 
     @Override
-    public void getAuctions() {
+    public void syncAuctions() {
+        view.clearAuctions();
         model.getAuctions();
     }
 
     @Override
-    public void onReceiveItem(Item item) {
-        view.onReceiveItem(item);
+    public void onReceiveAuction(Auction auction) {
+        view.onReceiveAuction(auction);
     }
 
     @Override

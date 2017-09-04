@@ -39,7 +39,7 @@ public abstract class BaseView extends JPanel implements Base.View {
         return result;
     }
 
-    public void setResult(Object result) {
+    public void setResult(int sender, Object result) {
         this.result = result;
     }
 }
