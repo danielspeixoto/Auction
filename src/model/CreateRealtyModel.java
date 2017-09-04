@@ -16,7 +16,7 @@ public class CreateRealtyModel implements CreateRealty.Model {
     public void createRealty(Realty realty) {
         int result;
         try {
-            result = Database.insert(RealtyDatabase.PATH_REALTIES, realty);
+            result = Database.insert(RealtyDatabase.PATH_ITEMS, realty);
             realty.setId(result);
             presenter.onCreateSuccess();
         } catch (Exception e) {

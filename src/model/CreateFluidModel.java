@@ -16,7 +16,7 @@ public class CreateFluidModel implements CreateFluid.Model {
     public void createFluid(Fluid fluid) {
         int result;
         try {
-            result = Database.insert(FluidDatabase.PATH_FLUIDS, fluid);
+            result = Database.insert(FluidDatabase.PATH_ITEMS, fluid);
             fluid.setId(result);
             presenter.onCreateSuccess();
         } catch (Exception e) {

@@ -39,7 +39,7 @@ public class LoginView extends BaseView implements Login.View {
         logo = new JLabel(new ImageIcon(ImageIO.read(new File("src//images//auction.png"))));
         logo.setBounds(11, 0, 128, 128);
         titleLabel = new JLabel("Leilões & Cia");
-        titleLabel.setFont(new Font("Arial", Font.ITALIC, 20));
+        titleLabel.setFont(new Font("Arial", Font.ITALIC, 15));
         titleLabel.setBounds(15, 135, 128, 30);
         logoPanel.add(logo);
         logoPanel.add(titleLabel);
@@ -52,6 +52,13 @@ public class LoginView extends BaseView implements Login.View {
         passwordField.setLocation(22, 255);
         passwordField.setSize(250, 50);
         passwordField.textField.setSize(250, 30);
+        passwordField.getTextField().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                login();
+            }
+        });
+        
         loginButton = new SimpleButton("Login");
         loginButton.setBounds(75, 320, 150, 30);
         createAccountButton = new SimpleButton("Criar conta");
@@ -66,10 +73,7 @@ public class LoginView extends BaseView implements Login.View {
         loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                presenter.login(
-                        emailField.getText().toLowerCase().trim(),
-                        passwordField.getText()
-                );
+                login();
             }
         });
         createAccountButton.addActionListener(new ActionListener() {
@@ -78,6 +82,13 @@ public class LoginView extends BaseView implements Login.View {
                 frame.changePanel(new CreateUserView());
             }
         });
+    }
+
+    private void login() {
+        presenter.login(
+                emailField.getText().toLowerCase().trim(),
+                passwordField.getText()
+        );
     }
 
     @Override

@@ -17,6 +17,10 @@ public abstract class TextField extends JPanel {
         add(label);
     }
 
+    public JTextField getTextField() {
+        return textField;
+    }
+
     public void setPosition(int x, int y) {
         setBounds(x, y, 250, 45);
     }

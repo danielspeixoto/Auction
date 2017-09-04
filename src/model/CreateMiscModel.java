@@ -16,7 +16,7 @@ public class CreateMiscModel implements CreateMisc.Model {
     public void createMisc(Misc misc) {
         int result;
         try {
-            result = Database.insert(MiscDatabase.PATH_MISCS, misc);
+            result = Database.insert(MiscDatabase.PATH_ITEMS, misc);
             misc.setId(result);
             presenter.onCreateSuccess();
         } catch (Exception e) {

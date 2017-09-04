@@ -23,8 +23,7 @@ public class LoginModel implements Login.Model {
             if (user != null) {
             	Account account = AccountDatabase.getAccount(user.getId());
                 user.setAccount(account);
-            	Global.setCurrentUser(user);
-                presenter.onLoginSuccess();
+                presenter.onLoginSuccess(user);
             } else {
                 presenter.onError("Email ou senha incorretos");
             }

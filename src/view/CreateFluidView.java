@@ -7,9 +7,7 @@ import util.Global;
 import view.component.InputField;
 import view.component.SimpleButton;
 
-import javax.swing.*;
-
-public class CreateFluidView extends BaseView implements CreateFluid.View {
+public class CreateFluidView extends CreateItemView implements CreateFluid.View {
 
 	private InputField nameField;
 	private InputField descriptionField;
@@ -73,7 +71,11 @@ public class CreateFluidView extends BaseView implements CreateFluid.View {
         submitButton = new SimpleButton("Salvar");
         submitButton.setLocation(100, 378);
         submitButton.addActionListener(e ->
-                presenter.createFluid(new Fluid(Global.getCurrentUser().getId(), nameField.getText(), descriptionField.getText(), 'f', containerDescriptionField.getText(), Double.parseDouble(containerLengthField.getText()), Double.parseDouble(containerWidthField.getText()), Double.parseDouble(containerHeightField.getText()), Double.parseDouble(volumeField.getText()), Double.parseDouble(radiusField.getText()), Double.parseDouble(weightField.getText())))
+                presenter.createFluid(new Fluid(Global.getCurrentUser().getId(), nameField.getText(),
+                        descriptionField.getText(), containerDescriptionField.getText(),
+                        Double.parseDouble(containerLengthField.getText()), Double.parseDouble(containerWidthField.getText()),
+                        Double.parseDouble(containerHeightField.getText()), Double.parseDouble(volumeField.getText()),
+                        Double.parseDouble(radiusField.getText()), Double.parseDouble(weightField.getText())))
         );
         add(nameField);
         add(descriptionField);
@@ -99,7 +101,7 @@ public class CreateFluidView extends BaseView implements CreateFluid.View {
 
     @Override
     public void onCreateSuccess(Fluid fluid) {
-        frame.setResult(fluid);
+        super.sendResult(fluid);
     }
 
 }

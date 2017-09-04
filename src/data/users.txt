@@ -1,2 +1,0 @@
-1,mb@email.com,Mateus Barbosa,senha
-2,mbmachado@outlook.com,Mateus Barbosa,senha

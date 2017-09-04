@@ -16,7 +16,7 @@ public class CreateVehicleModel implements CreateVehicle.Model {
     public void createVehicle(Vehicle vehicle) {
         int result;
         try {
-            result = Database.insert(VehicleDatabase.PATH_VEHICLES, vehicle);
+            result = Database.insert(VehicleDatabase.PATH_ITEMS, vehicle);
             vehicle.setId(result);
             presenter.onCreateSuccess();
         } catch (Exception e) {

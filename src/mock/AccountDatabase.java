@@ -1,10 +1,9 @@
 package mock;
 
-import java.io.IOException;
-
 import model.pojo.Account;
-import util.ConvertAccount;
-import util.Global;
+import util.Convert;
+
+import java.io.IOException;
 
 public class AccountDatabase extends Database  {
 	
@@ -16,7 +15,7 @@ public class AccountDatabase extends Database  {
     public static Account getAccount(int userId) throws IOException {
     	String line = getData(AccountDatabase.PATH_ACCOUNTS, AccountDatabase.INDEX_USER_ID, Integer.toString(userId));
     	Account account = null;
-    	account = ConvertAccount.accountFrom(line);
+    	account = Convert.accountFrom(line);
     	return account;
     }
 

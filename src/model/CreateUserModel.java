@@ -27,10 +27,9 @@ public class CreateUserModel implements CreateUser.Model {
                 account.setUserId(result);
                 Database.insert(AccountDatabase.PATH_ACCOUNTS, account); 
                 user.setAccount(account);
-            	Global.setCurrentUser(user);
-                presenter.onCreateSuccess();
+                presenter.onCreateSuccess(user);
             } else {
-                presenter.onError("O email já está cadastrado");
+                presenter.onError("E-mail em uso");
             }
         } catch (Exception e) {
             e.printStackTrace();

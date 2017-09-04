@@ -11,13 +11,11 @@ public class Vehicle extends Item {
     private int seats;
     private String motorDescription;
     private String chassis;
+	public static final char TYPE = 'v';
     
-    public Vehicle(Integer ownerId, String name, String description, char type) {
-        super(ownerId, name, description, type);
-    }
-    
-    public Vehicle(Integer ownerId, String name, String description, char type, String mileage, String brand, String model, int doors, String fuel, String color, int seats, String motorDescription, String chassis) {
-        super(ownerId, name, description, type);
+    public Vehicle(Integer ownerId, String name, String description, String mileage, String brand, String model,
+				   int doors, String fuel, String color, int seats, String motorDescription, String chassis) {
+        super(ownerId, name, description, TYPE);
         this.mileage = mileage;
         this.brand = brand;
         this.model = model;
@@ -28,6 +26,20 @@ public class Vehicle extends Item {
         this.motorDescription = motorDescription;
         this.chassis = chassis;
     }
+
+	public Vehicle(Integer id, Integer ownerId, String name, String description, String mileage, String brand, String model,
+				   int doors, String fuel, String color, int seats, String motorDescription, String chassis) {
+		super(id, ownerId, name, description, TYPE);
+		this.mileage = mileage;
+		this.brand = brand;
+		this.model = model;
+		this.doors = doors;
+		this.fuel = fuel;
+		this.color = color;
+		this.seats = seats;
+		this.motorDescription = motorDescription;
+		this.chassis = chassis;
+	}
 	
 	public String getMileage() {
 		return mileage;

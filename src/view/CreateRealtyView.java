@@ -7,9 +7,7 @@ import util.Global;
 import view.component.InputField;
 import view.component.SimpleButton;
 
-import javax.swing.*;
-
-public class CreateRealtyView extends BaseView implements CreateRealty.View {
+public class CreateRealtyView extends CreateItemView implements CreateRealty.View {
 
 	private InputField nameField;
 	private InputField descriptionField;
@@ -49,7 +47,10 @@ public class CreateRealtyView extends BaseView implements CreateRealty.View {
         submitButton = new SimpleButton("Salvar");
         submitButton.setLocation(100, 360);
         submitButton.addActionListener(e ->
-                presenter.createRealty(new Realty(Global.getCurrentUser().getId(), nameField.getText(), descriptionField.getText(), 'r', locationField.getText(), Double.parseDouble(squareMetersField.getText()), Integer.parseInt(constructionYearField.getText())))
+                presenter.createRealty(new Realty(Global.getCurrentUser().getId(), nameField.getText(),
+                        descriptionField.getText(), locationField.getText(),
+                        Double.parseDouble(squareMetersField.getText()),
+                        Integer.parseInt(constructionYearField.getText())))
         );
         add(nameField);
         add(descriptionField);
@@ -71,7 +72,7 @@ public class CreateRealtyView extends BaseView implements CreateRealty.View {
 
     @Override
     public void onCreateSuccess(Realty realty) {
-        frame.setResult(realty);
+        super.sendResult(realty);
     }
 
 }

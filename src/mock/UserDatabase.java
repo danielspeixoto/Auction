@@ -20,7 +20,7 @@ public class UserDatabase extends Database {
         User user = null;
         String[] arr;
         String line = getData(PATH_USERS, INDEX_EMAIL, email);
-        if (!line.equals("")) {
+        if (line != null) {
             arr = line.split(",");
             if (arr[INDEX_PASSWORD].equals(password)) {
                 user = Convert.userFrom(line);
