@@ -1,5 +1,7 @@
 package model.pojo;
 
+import mock.Database;
+
 public class Fluid extends Item {
 	
 	private String containerDescription;
@@ -84,12 +86,12 @@ public class Fluid extends Item {
     public String toString() {
         String str = super.toString();
 		return str +
-        		"," + containerDescription +
-        		"," + containerLength +
-        		"," + containerWidth +
-        		"," + containerHeight +
-        		"," + volume +
-        		"," + radius +
-        		"," + weight;
+        		Database.SPLIT + containerDescription +
+        		Database.SPLIT + containerLength +
+        		Database.SPLIT + containerWidth +
+        		Database.SPLIT + containerHeight +
+        		Database.SPLIT + volume +
+        		Database.SPLIT + radius +
+        		Database.SPLIT + weight;
     }
 }

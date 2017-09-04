@@ -1,5 +1,7 @@
 package model.pojo;
 
+import mock.Database;
+
 public class Vehicle extends Item {
 	
 	private String mileage;
@@ -100,15 +102,15 @@ public class Vehicle extends Item {
     public String toString() {
         String str = super.toString();
 		return str +
-        		"," + mileage +
-                "," + brand +
-                "," + model +
-                "," + doors +
-                "," + fuel +
-                "," + color +
-                "," + seats +
-                "," + motorDescription +
-                "," + chassis;
+        		Database.SPLIT + mileage +
+                Database.SPLIT + brand +
+                Database.SPLIT + model +
+                Database.SPLIT + doors +
+                Database.SPLIT + fuel +
+                Database.SPLIT + color +
+                Database.SPLIT + seats +
+                Database.SPLIT + motorDescription +
+                Database.SPLIT + chassis;
     }
 	
 }

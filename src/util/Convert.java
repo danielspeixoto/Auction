@@ -55,13 +55,12 @@ public class Convert {
 
     public static Auction auctionFrom(String string) {
         String arr[] = getArr(string);
-        int lastBidderId = 0;
         return new Auction(
                 Integer.valueOf(arr[AuctionDatabase.INDEX_ID]),
                 Integer.valueOf(arr[AuctionDatabase.PATH_MIN_PERCENT_FOR_NEW_BIDS]),
                 Long.valueOf(arr[AuctionDatabase.PATH_EXPIRATION_TIME]),
                 Long.valueOf(arr[AuctionDatabase.PATH_LAST_BID_MILLIS]),
-                lastBidderId,
+                Integer.valueOf(arr[AuctionDatabase.PATH_LAST_BIDDER_ID]),
                 Integer.valueOf(arr[AuctionDatabase.PATH_ITEM_ID]),
                 Integer.valueOf(arr[AuctionDatabase.PATH_OWNER_ID]),
                 Double.valueOf(arr[AuctionDatabase.PATH_LAST_BID])

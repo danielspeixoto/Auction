@@ -1,5 +1,7 @@
 package model.pojo;
 
+import mock.Database;
+
 public class Misc extends Item {
     private Double length;
     private Double width;
@@ -70,10 +72,10 @@ public class Misc extends Item {
     public String toString() {
         String str = super.toString();
 		return str +
-        		"," + length +
-                "," + width +
-                "," + height +
-                "," + weight +
-                "," + containerDescription;
+        		Database.SPLIT + length +
+                Database.SPLIT + width +
+                Database.SPLIT + height +
+                Database.SPLIT + weight +
+                Database.SPLIT + containerDescription;
     }
 }

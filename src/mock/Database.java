@@ -1,5 +1,6 @@
 package mock;
 
+import model.pojo.Account;
 import util.WriteToFile;
 
 import java.io.*;
@@ -29,7 +30,11 @@ public class Database {
 
 	public static int insert(String path, Object object) throws IOException {
 		int id = getLastId(path) + 1;
-		WriteToFile.write(path, id + SPLIT + object.toString() + SPLIT + "\n");
+		String str = SPLIT + object.toString() + SPLIT + "\n";
+		if(!(object instanceof Account)){
+			str = id + str;
+		}
+		WriteToFile.write(path, str);
 		return id;
 	}
 
@@ -80,5 +85,39 @@ public class Database {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+
+	public static void deleteLine(String path, String oldLine) {
+		try {
+			FileReader reader;
+			reader = new FileReader(path);
+			BufferedReader bufferedReader = new BufferedReader(reader);
+			StringBuffer inputBuffer = new StringBuffer();
+			String currentLine;
+
+			while ((currentLine = bufferedReader.readLine()) != null) {
+				if (!currentLine.equals(oldLine)) {
+					inputBuffer.append(currentLine);
+					inputBuffer.append('\n');
+				}
+			}
+			String inputString = inputBuffer.toString();
+			bufferedReader.close();
+			reader.close();
+
+			FileWriter writer = new FileWriter(path, false);
+			BufferedWriter bufferedWriter = new BufferedWriter(writer);
+			bufferedWriter.write(inputString);
+			bufferedWriter.close();
+			writer.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void update(String path, Object obj, int id) throws IOException {
+		replaceLine(path, getData(path, INDEX_ID, String.valueOf(id)), obj.toString());
 	}
 }

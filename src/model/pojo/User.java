@@ -1,6 +1,8 @@
 package model.pojo;
 
 
+import mock.Database;
+
 public class User {
 
     private Integer id;
@@ -69,9 +71,9 @@ public class User {
 
     @Override
     public String toString() {
-        String str = id == null ? "" : id.toString() + ",";
+        String str = id == null ? "" : id.toString() + Database.SPLIT;
         return str + email +
-                "," + name +
-                "," + password;
+                Database.SPLIT + name +
+                Database.SPLIT + password;
     }
 }

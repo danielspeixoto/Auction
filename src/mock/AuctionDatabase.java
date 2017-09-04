@@ -1,5 +1,6 @@
 package mock;
 
+import model.pojo.Account;
 import model.pojo.Auction;
 import util.Convert;
 import util.Transmitter;
@@ -31,5 +32,28 @@ public class AuctionDatabase extends Database {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static void update(Auction auction) throws IOException {
+        update(PATH_AUCTIONS, auction, auction.getId());
+    }
+
+    public static void checkIfFinished() {
+        getAll(new Transmitter() {
+            @Override
+            public void onReceived(Object object) {
+                Auction auction = (Auction) object;
+                if(auction.getRemainingTime() <= 0) {
+                    deleteLine(PATH_AUCTIONS, object.toString());
+                    try {
+                        Account account = AccountDatabase.getAccount(auction.getLastBidderId());
+                        account.bidCompleted(auction.getLastBid());
+                        AccountDatabase.update(account);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
     }
 }

@@ -1,5 +1,7 @@
 package model.pojo;
 
+import mock.Database;
+
 public class Realty extends Item {
     private String location;
     private Double squareMeters;
@@ -48,8 +50,8 @@ public class Realty extends Item {
     public String toString() {
         String str = super.toString();
 		return str +
-        		"," + location +
-                "," + squareMeters +
-                "," + constructionYear;
+        		Database.SPLIT + location +
+                Database.SPLIT + squareMeters +
+                Database.SPLIT + constructionYear;
     }
 }

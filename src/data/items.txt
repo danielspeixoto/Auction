@@ -1,3 +1,8 @@
 1#2#Casa#Grande#r#Hogwarts#20.0#1913#
 2#2#Apartamento#3/4#r#Salvador#54.0#2007#
 3#2#Agua#Molhada#m#21.0#2.0#12.0#21.0#Grande#
+4#2#Imovel#Parado#r#NoWhere#2.0#1234#
+5#2#dasd#dasdsa#r#sadas#3213.0#3213#
+6#2#sdf#fsd#r#sdfs#23.0#2434#
+7#2#dasd#dasdsa#r#asdad#232.0#2134#
+8#2#asd#dasdas#r#asdas#123123.0#123123#
