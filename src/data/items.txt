@@ -4,3 +4,4 @@
 4#1#ads#ads#f#12#1.0#1.0#1.0#1.0#1.0#1.0#
 5#1#Ve�culo estouraado#Zero e sem riscos#v#100000#Fiat#Uno#2#Gasolina#Azul#5#motor 1000#12090923#
 6#1#Bala#Bala de tangerina sem açúcar#m#1.0#1.0#1.0#1.0#Caixa do SEDEX#
+7#1#asd#asd#r#asd#12.0#12#
