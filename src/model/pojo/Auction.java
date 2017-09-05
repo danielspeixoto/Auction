@@ -16,12 +16,15 @@ public class Auction implements Serializable {
     private Item item;
     private Double lastBid = 0.0;
 
+
+
     public Auction(Integer ownerId, Integer minPercentForNewBids, long expirationTime,
-                   Integer itemId) {
+                   Integer itemId, Double lastBid) {
         this.minPercentForNewBids = minPercentForNewBids;
         this.expirationTime = expirationTime;
         this.itemId = itemId;
         this.ownerId = ownerId;
+        this.lastBid = lastBid;
     }
 
     public Auction(Integer id, Integer minPercentForNewBids, long expirationTime,

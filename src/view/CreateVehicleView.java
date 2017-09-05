@@ -4,8 +4,11 @@ import contract.CreateVehicle;
 import model.pojo.Vehicle;
 import presenter.CreateVehiclePresenter;
 import util.Global;
+import util.Validate;
 import view.component.InputField;
 import view.component.SimpleButton;
+
+import java.util.Arrays;
 
 public class CreateVehicleView extends CreateItemView implements CreateVehicle.View {
 
@@ -82,12 +85,28 @@ public class CreateVehicleView extends CreateItemView implements CreateVehicle.V
         chassisField.textField.setSize(300,30);
         submitButton = new SimpleButton("Salvar");
         submitButton.setLocation(100, 430);
-        submitButton.addActionListener(e ->
-                presenter.createVehicle(new Vehicle(Global.getCurrentUser().getId(), nameField.getText(),
-                        descriptionField.getText(), mileageField.getText(), brandField.getText(),
-                        modelField.getText(), Integer.parseInt(doorsField.getText()), fuelField.getText(),
-                        colorField.getText(), Integer.parseInt(seatsField.getText()), motorDescriptionField.getText(),
-                        chassisField.getText()))
+        submitButton.addActionListener(e -> {
+                    if (!Validate.integer(doorsField.getText()).equals(Validate.OK)) {
+                        showErrorDialog("Entrada incorreta");
+                    } else if (!Validate.integer(seatsField.getText()).equals(Validate.OK)) {
+                        showErrorDialog("Entrada incorreta");
+                    } else if (!Validate.notEmpty(Arrays.asList(mileageField.getText(),
+                            brandField.getText(),
+                            modelField.getText(),
+                            fuelField.getText(),
+                            colorField.getText(),
+                            motorDescriptionField.getText(),
+                            chassisField.getText())).equals(Validate.OK)) {
+
+                        showErrorDialog("Todos os campos devem ser preenchidos");
+                    } else {
+                        presenter.createVehicle(new Vehicle(Global.getCurrentUser().getId(), nameField.getText(),
+                                descriptionField.getText(), mileageField.getText(), brandField.getText(),
+                                modelField.getText(), Integer.parseInt(doorsField.getText()), fuelField.getText(),
+                                colorField.getText(), Integer.parseInt(seatsField.getText()), motorDescriptionField.getText(),
+                                chassisField.getText()));
+                    }
+                }
         );
         add(nameField);
         add(descriptionField);

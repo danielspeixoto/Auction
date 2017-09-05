@@ -4,6 +4,7 @@ import contract.CreateRealty;
 import model.pojo.Realty;
 import presenter.CreateRealtyPresenter;
 import util.Global;
+import util.Validate;
 import view.component.InputField;
 import view.component.SimpleButton;
 
@@ -46,11 +47,21 @@ public class CreateRealtyView extends CreateItemView implements CreateRealty.Vie
         
         submitButton = new SimpleButton("Salvar");
         submitButton.setLocation(100, 360);
-        submitButton.addActionListener(e ->
-                presenter.createRealty(new Realty(Global.getCurrentUser().getId(), nameField.getText(),
-                        descriptionField.getText(), locationField.getText(),
-                        Double.parseDouble(squareMetersField.getText()),
-                        Integer.parseInt(constructionYearField.getText())))
+        submitButton.addActionListener(e ->  {
+                    if (!Validate.numeric(locationField.getText()).equals(Validate.OK)) {
+                        showErrorDialog("Entrada incorreta");
+                    } else if (!Validate.numeric(squareMetersField.getText()).equals(Validate.OK)) {
+                        showErrorDialog("Entrada incorreta");
+                    } else if (!Validate.numeric(constructionYearField.getText()).equals(Validate.OK)) {
+                        showErrorDialog("Entrada incorreta");
+                    } else {
+                        presenter.createRealty(new Realty(Global.getCurrentUser().getId(), nameField.getText(),
+                                descriptionField.getText(), locationField.getText(),
+                                Double.parseDouble(squareMetersField.getText()),
+                                Integer.parseInt(constructionYearField.getText())));
+                    }
+                }
+
         );
         add(nameField);
         add(descriptionField);

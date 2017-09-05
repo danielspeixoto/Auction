@@ -15,6 +15,7 @@ public class CreateAuctionView extends BaseView implements CreateAuction.View {
 
     private static final int CREATED_AUCTION_SENDER = 4;
     private InputField minPercentForNewBidsField;
+    private InputField minBidField;
     private InputField expirationTimeField;
     private SimpleButton submitButton;
     private SimpleButton createMiscButton;
@@ -31,6 +32,12 @@ public class CreateAuctionView extends BaseView implements CreateAuction.View {
         minPercentForNewBidsField.setLocation(25, 20);
         minPercentForNewBidsField.setSize(300,50);
         minPercentForNewBidsField.textField.setSize(300,30);
+
+        minBidField = new InputField("Valor mínimo");
+        minBidField.setLocation(25, 140);
+        minBidField.setSize(300,50);
+        minBidField.textField.setSize(300,30);
+
         expirationTimeField = new InputField("Tempo máximo sem lances (min)");
         expirationTimeField.setLocation(25, 80);
         expirationTimeField.setSize(300,50);
@@ -38,22 +45,22 @@ public class CreateAuctionView extends BaseView implements CreateAuction.View {
         
      
         createMiscButton = new SimpleButton("Criar Misc");
-        createMiscButton.setBounds(25, 150, 140,30);
+        createMiscButton.setBounds(25, 220, 140,30);
         createMiscButton.addActionListener(e -> {
             frame.createForResult(new CreateMiscView());
         });
         createFluidButton = new SimpleButton("Criar Fluido");
-        createFluidButton.setBounds(185, 150, 140,30);
+        createFluidButton.setBounds(185, 220, 140,30);
         createFluidButton.addActionListener(e -> {
             frame.createForResult(new CreateFluidView());
         });  
         createVehicleButton = new SimpleButton("Criar Veiculo");
-        createVehicleButton.setBounds(25, 195, 140,30);
+        createVehicleButton.setBounds(25, 265, 140,30);
         createVehicleButton.addActionListener(e -> {
             frame.createForResult(new CreateVehicleView());
         });  
         createRealtyButton = new SimpleButton("Criar Imovel");
-        createRealtyButton.setBounds(185, 195, 140,30);
+        createRealtyButton.setBounds(185, 265, 140,30);
         createRealtyButton.addActionListener(e -> {
             frame.createForResult(new CreateRealtyView());
         });  
@@ -69,13 +76,23 @@ public class CreateAuctionView extends BaseView implements CreateAuction.View {
             } else if (itemId == null) {
                 showErrorDialog("Associe um item para este leilão");
             } else {
-                presenter.createAuction(new Auction(Global.getCurrentUser().getId(),
-                        Integer.valueOf(minPercentForNewBidsField.getText()),
-                        Integer.valueOf(expirationTimeField.getText()) * 60000, itemId));
+                if(!Validate.integer(minPercentForNewBidsField.getText()).equals(Validate.OK)) {
+                    showErrorDialog("Valor inválido");
+                } else if(!Validate.integer(expirationTimeField.getText()).equals(Validate.OK)) {
+                    showErrorDialog("Valor inválido");
+                } else if(!Validate.numeric(minBidField.getText()).equals(Validate.OK)) {
+                    showErrorDialog("Valor inválido");
+                } else {
+                    presenter.createAuction(new Auction(Global.getCurrentUser().getId(),
+                            Integer.valueOf(minPercentForNewBidsField.getText()),
+                            Integer.valueOf(expirationTimeField.getText()) * 60000, itemId,
+                            Double.valueOf(minBidField.getText())));
+                }
             }
 
         });
-        
+
+        add(minBidField);
         add(minPercentForNewBidsField);
         add(expirationTimeField);
         add(createMiscButton);

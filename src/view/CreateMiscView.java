@@ -4,6 +4,7 @@ import contract.CreateMisc;
 import model.pojo.Misc;
 import presenter.CreateMiscPresenter;
 import util.Global;
+import util.Validate;
 import view.component.InputField;
 import view.component.SimpleButton;
 
@@ -58,11 +59,23 @@ public class CreateMiscView extends CreateItemView implements CreateMisc.View {
         
         submitButton = new SimpleButton("Salvar");
         submitButton.setLocation(100, 360);
-        submitButton.addActionListener(e ->
-                presenter.createMisc(new Misc(Global.getCurrentUser().getId(), nameField.getText(),
-                        descriptionField.getText(), Double.parseDouble(lengthField.getText()),
-                        Double.parseDouble(widthField.getText()), Double.parseDouble(heightField.getText()),
-                        Double.parseDouble(weightField.getText()), containerDescriptionField.getText()))
+        submitButton.addActionListener(e -> {
+                    if (!Validate.numeric(lengthField.getText()).equals(Validate.OK)) {
+                        showErrorDialog("Entrada incorreta");
+                    } else if (!Validate.numeric(widthField.getText()).equals(Validate.OK)) {
+                        showErrorDialog("Entrada incorreta");
+                    } else if (!Validate.numeric(heightField.getText()).equals(Validate.OK)) {
+                        showErrorDialog("Entrada incorreta");
+                    } else if (!Validate.numeric(weightField.getText()).equals(Validate.OK)) {
+                        showErrorDialog("Entrada incorreta");
+                    } else {
+                        presenter.createMisc(new Misc(Global.getCurrentUser().getId(), nameField.getText(),
+                                descriptionField.getText(), Double.parseDouble(lengthField.getText()),
+                                Double.parseDouble(widthField.getText()), Double.parseDouble(heightField.getText()),
+                                Double.parseDouble(weightField.getText()), containerDescriptionField.getText()));
+                    }
+                }
+
         );
         add(nameField);
         add(descriptionField);

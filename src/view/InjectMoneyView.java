@@ -2,6 +2,7 @@ package view;
 
 import contract.InjectMoney;
 import presenter.InjectMoneyPresenter;
+import util.Validate;
 import view.component.InputField;
 import view.component.SimpleButton;
 
@@ -34,7 +35,12 @@ public class InjectMoneyView extends BaseView implements InjectMoney.View  {
 		
 		injectMoneyButton.addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				presenter.injectMoney(Double.parseDouble(valueField.getText()));
+				if(!Validate.numeric(valueField.getText()).equals(Validate.OK)) {
+					showErrorDialog("Formato inválido");
+				} else {
+					presenter.injectMoney(Double.parseDouble(valueField.getText()));
+				}
+
 			}
 		});
 	}
