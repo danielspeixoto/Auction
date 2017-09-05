@@ -19,6 +19,7 @@ public class AuctionDatabase extends Database {
     public static final int PATH_OWNER_ID = 6;
     public static final String PATH_AUCTIONS = "src//data//auctions.txt";
     public static final int PATH_LAST_BID = 7;
+    public static final int PATH_ENDED = 8;
 
     public static void getAll(Transmitter transmitter) {
         try (FileReader reader = new FileReader(PATH_AUCTIONS);
@@ -43,9 +44,11 @@ public class AuctionDatabase extends Database {
             @Override
             public void onReceived(Object object) {
                 Auction auction = (Auction) object;
-                if(auction.getRemainingTime() <= 0) {
-                    deleteLine(PATH_AUCTIONS, object.toString());
+                if(auction.getRemainingTime() <= 0 && auction.getLastBidMillis() != -1) {
                     try {
+                        auction.setLastBidMillis(-1);
+                        update(auction);
+
                         Account account = AccountDatabase.getAccount(auction.getLastBidderId());
                         account.bidCompleted(auction.getLastBid());
                         AccountDatabase.update(account);

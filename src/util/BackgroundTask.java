@@ -17,7 +17,7 @@ public class BackgroundTask {
                         for(int i = 1; i <= 60; i++) {
                             thread.sleep(1000);
                             subscribers.listIterator().forEachRemaining(Runnable::run);
-                            if(i == 5) {
+                            if(i == 30) {
                                 slowSubscribers.listIterator().forEachRemaining(Runnable::run);
                             }
                         }
