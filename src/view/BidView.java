@@ -20,6 +20,8 @@ public abstract class BidView extends BaseView implements Bid.View {
     protected JLabel timeLeftLabel;
     protected JLabel minValueLabel;
     protected Auction auction;
+    protected Item item;
+
 
     private int backTaskIndex = -1;
 
@@ -30,27 +32,8 @@ public abstract class BidView extends BaseView implements Bid.View {
     public BidView() {
         presenter = new BidPresenter(this);
         timeLeftLabel = new JLabel();
-        timeLeftLabel.setBounds(20, 500, 100, 100);
-        add(timeLeftLabel);
-        minValueLabel = new JLabel();
-        minValueLabel.setBounds(20, 300, 700, 100);
-        add(minValueLabel);
         valueField = new InputField("Coloque o valor aqui");
-        valueField.setLocation(20, 150);
-        add(valueField);
         buyButton = new JButton("Comprar");
-        buyButton.setBounds(20, 20, 700, 100);
-        buyButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if(!Validate.numeric(valueField.getText()).equals(Validate.OK)) {
-                    showErrorDialog("Formato colocado no valor não é válido");
-                } else {
-                    presenter.bid(auction, Double.parseDouble(valueField.getText()));
-                }
-            }
-        });
-        add(buyButton);
     }
 
 
@@ -58,7 +41,28 @@ public abstract class BidView extends BaseView implements Bid.View {
     public void setResult(int sender, Object result) {
         super.setResult(sender, result);
         auction = (Auction) result;
-        Item item = auction.getItem();
+        item = auction.getItem();
+        if(auction.getRemainingTime() > 0) {
+            timeLeftLabel.setBounds(20, 500, 100, 100);
+            add(timeLeftLabel);
+            minValueLabel = new JLabel();
+            minValueLabel.setBounds(20, 300, 700, 100);
+            add(minValueLabel);
+            valueField.setLocation(20, 150);
+            add(valueField);
+            buyButton.setBounds(20, 20, 700, 100);
+            buyButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    if(!Validate.numeric(valueField.getText()).equals(Validate.OK)) {
+                        showErrorDialog("Formato colocado no valor não é válido");
+                    } else {
+                        presenter.bid(auction, Double.parseDouble(valueField.getText()));
+                    }
+                }
+            });
+            add(buyButton);
+        }
         frame.setTitle(item.getName());
         update();
     }
@@ -69,6 +73,8 @@ public abstract class BidView extends BaseView implements Bid.View {
             int minutes = (int) (left/60) % 60;
             int seconds = (int) left % 60;
             timeLeftLabel.setText(hours + ":" + minutes + ":" + seconds);
+        } else {
+            buyButton.setVisible(false);
         }
     }
 

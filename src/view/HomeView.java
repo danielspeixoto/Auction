@@ -2,8 +2,10 @@ package view;
 
 import com.sun.glass.events.KeyEvent;
 import contract.Home;
+import mock.AuctionDatabase;
 import model.pojo.*;
 import presenter.HomePresenter;
+import presenter.MyItemsPresenter;
 import util.Global;
 import view.component.AuctionCellRenderer;
 import view.component.ToolBarButton;
@@ -29,7 +31,8 @@ public class HomeView extends BaseView implements Home.View {
     private JMenuItem editUser;
     private JMenuItem logOut;
     private JMenuItem createAuction;
-    
+    private JMenuItem myItems;
+
     private JLabel programNameLabel;
     private JLabel accountValueLabel;
     private JLabel accountValueDescriptionLabel;
@@ -43,6 +46,7 @@ public class HomeView extends BaseView implements Home.View {
     private ToolBarButton refreshButton;
     private ToolBarButton addValueToolBarButton;
     private ToolBarButton auctionToolBarButton;
+    private ToolBarButton homeButton;
     private ToolBarButton logoutToolBarButton;
 
     private JList list;
@@ -72,6 +76,7 @@ public class HomeView extends BaseView implements Home.View {
         editUser.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E, ActionEvent.CTRL_MASK));
         createAuction = new JMenuItem("Criar Leilão");
         createAuction.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_L, ActionEvent.CTRL_MASK));
+        myItems = new JMenuItem("Ver itens");
         logOut = new JMenuItem("Sair");
         logOut.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, ActionEvent.CTRL_MASK));
         
@@ -82,6 +87,7 @@ public class HomeView extends BaseView implements Home.View {
         menuBar.add(helpMenu);
         accountMenu.add(addValue);
         auctionMenu.add(createAuction);
+        auctionMenu.add(myItems);
         editMenu.add(editUser);
         mainMenu.add(logOut);
         
@@ -89,6 +95,8 @@ public class HomeView extends BaseView implements Home.View {
         toolBar.setBounds(0, 0, 800, 35);
         toolBar.setBackground(new Color(234, 234, 234));   
         toolBar.setFloatable(false);
+        toolBar.addSeparator();
+        toolBar.add(homeButton = new ToolBarButton("Página Inicial","src//images//home.png"));
         toolBar.addSeparator();
         toolBar.add(auctionToolBarButton = new ToolBarButton("Criar Leilão","src//images//auction-icon.png"));
         toolBar.addSeparator();
@@ -168,7 +176,17 @@ public class HomeView extends BaseView implements Home.View {
         createAuction.addActionListener(e -> {
             frame.createForResult(new CreateAuctionView());
         });
-        
+
+        myItems.addActionListener(e -> {
+            presenter = new MyItemsPresenter(this);
+            refresh();
+        });
+
+        homeButton.addActionListener(e -> {
+            presenter = new HomePresenter(this);
+            refresh();
+        });
+
         auctionToolBarButton.addActionListener(e -> {
             frame.createForResult(new CreateAuctionView());
         });
@@ -204,9 +222,9 @@ public class HomeView extends BaseView implements Home.View {
 
     private void refresh() {
         Account account = Global.getCurrentUser().getAccount();
-        System.out.println(account);
         accountValueLabel.setText("R$ "+ String.format("%.2f",account.getBalance()));
         presenter.syncAuctions();
+        AuctionDatabase.checkIfFinished();
     }
    
     @Override
