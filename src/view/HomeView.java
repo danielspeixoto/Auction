@@ -1,5 +1,6 @@
 package view;
 
+import com.sun.glass.events.KeyEvent;
 import contract.Home;
 import model.pojo.*;
 import presenter.HomePresenter;
@@ -8,9 +9,6 @@ import view.component.AuctionCellRenderer;
 import view.component.ToolBarButton;
 
 import javax.swing.*;
-
-import com.sun.glass.events.KeyEvent;
-
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
@@ -138,7 +136,7 @@ public class HomeView extends BaseView implements Home.View {
             @Override
             public void mouseClicked(MouseEvent e) {
                 // Gerencia propriamente o tipo do item e manda para view específica
-                AuctionView view;
+                BidView view;
                 Auction auction = auctions.get(list.getSelectedIndex());
                 Item item = auction.getItem();
                 if(item instanceof Realty) {
@@ -176,7 +174,7 @@ public class HomeView extends BaseView implements Home.View {
         });
 
         refreshButton.addActionListener(e -> {
-            presenter.syncAuctions();
+            refresh();
         });
         
         logOut.addActionListener(e -> {	
@@ -203,12 +201,18 @@ public class HomeView extends BaseView implements Home.View {
         	JOptionPane.showOptionDialog(null, "Não disponível!", "Aviso", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, null, new Object[]{}, null);
 		});
     }
+
+    private void refresh() {
+        Account account = Global.getCurrentUser().getAccount();
+        System.out.println(account);
+        accountValueLabel.setText("R$ "+ String.format("%.2f",account.getBalance()));
+        presenter.syncAuctions();
+    }
    
     @Override
     public void setResult(int sender, Object result) {
     	super.setResult(sender, result);
-        System.out.println(sender);
-        presenter.syncAuctions();
+        refresh();
     	if(sender == InjectMoneyView.INJECT_MONEY_SENDER) {
     	    accountValueLabel.setText("R$ "+ Double.toString((double) result).format("%.2f", result));
         }

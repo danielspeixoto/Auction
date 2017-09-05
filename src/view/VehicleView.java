@@ -1,4 +1,4 @@
 package view;
 
-public class VehicleView extends AuctionView {
+public class VehicleView extends BidView {
 }

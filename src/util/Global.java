@@ -1,15 +1,11 @@
 package util;
 
+import mock.AccountDatabase;
+import mock.UserDatabase;
 import model.pojo.Account;
 import model.pojo.User;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-
-import mock.AccountDatabase;
+import java.io.*;
 
 public class Global {
 
@@ -17,6 +13,13 @@ public class Global {
     private static User currentUser;
 
     public static User getCurrentUser() {
+        try {
+            currentUser = UserDatabase.getUser(currentUser.getId());
+            Account account = AccountDatabase.getAccount(currentUser.getId());
+            currentUser.setAccount(account);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         return currentUser;
     }
 

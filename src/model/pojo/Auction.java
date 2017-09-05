@@ -1,5 +1,7 @@
 package model.pojo;
 
+import mock.Database;
+
 import java.io.Serializable;
 
 public class Auction implements Serializable {
@@ -7,7 +9,7 @@ public class Auction implements Serializable {
     private Integer id;
     private Integer minPercentForNewBids;
     private long expirationTime;
-    private long lastBidMillis;
+    private long lastBidMillis = 0;
     private Integer lastBidderId = -1;
     private Integer itemId;
     private Integer ownerId;
@@ -34,6 +36,21 @@ public class Auction implements Serializable {
         this.lastBid = lastBid;
     }
 
+    public long getRemainingTime() {
+        if(getLastBidderId() != -1) {
+            return (getExpirationTime() + getLastBidMillis() - System.currentTimeMillis());
+        }
+        return 1;
+    }
+
+    public Double getLastBid() {
+        return lastBid;
+    }
+
+    public void setLastBid(Double lastBid) {
+        this.lastBid = lastBid;
+    }
+
     public Item getItem() {
         return item;
     }
@@ -52,6 +69,10 @@ public class Auction implements Serializable {
 
     public Integer getMinPercentForNewBids() {
         return minPercentForNewBids;
+    }
+
+    public double getNextBidMin() {
+        return (minPercentForNewBids/100.0 + 1) * lastBid + 1;
     }
 
     public void setMinPercentForNewBids(Integer minPercentForNewBids) {
@@ -100,14 +121,14 @@ public class Auction implements Serializable {
 
     @Override
     public String toString() {
-        String str = id == null ? "" : id.toString() + ",";
+        String str = id == null ? "" : id.toString() + Database.SPLIT;
         return str +
-                minPercentForNewBids + "," +
-                expirationTime + "," +
-                lastBidMillis + "," +
-                lastBidderId + "," +
-                itemId + "," +
-                ownerId + "," +
+                minPercentForNewBids + Database.SPLIT +
+                expirationTime + Database.SPLIT +
+                lastBidMillis + Database.SPLIT +
+                lastBidderId + Database.SPLIT +
+                itemId + Database.SPLIT +
+                ownerId + Database.SPLIT +
                 lastBid;
     }
 }

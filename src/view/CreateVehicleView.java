@@ -80,7 +80,6 @@ public class CreateVehicleView extends CreateItemView implements CreateVehicle.V
         chassisField.setLocation(25, 370);
         chassisField.setSize(300,50);
         chassisField.textField.setSize(300,30);
-        
         submitButton = new SimpleButton("Salvar");
         submitButton.setLocation(100, 430);
         submitButton.addActionListener(e ->

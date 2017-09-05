@@ -1,14 +1,13 @@
 package model.pojo;
 
+import mock.Database;
+
 public class Account {
 	private int userId;
-	private double balance;
-	private double frozenBalance;
+	private double balance = 0;
+	private double frozenBalance = 0;
 	
-	public Account() {
-		this.balance = 0;
-		this.frozenBalance = 0;
-	}
+	public Account() { }
 	
 	public Account(int userId, double balance, double frozenBalance) {
 		this.userId = userId;
@@ -40,11 +39,29 @@ public class Account {
 		this.frozenBalance = frozenBalance;
 	}
 	
+
+    public void addFrozenBalance(double value) {
+		frozenBalance += value;
+		balance -= value;
+    }
+
+    public void removeFrozenBalance(double value) {
+		frozenBalance -= value;
+		balance += value;
+	}
+
+	public void addBalance(double value) {
+		balance += value;
+	}
+
+	public void bidCompleted(double value) {
+		frozenBalance -= value;
+	}
+
 	@Override
     public String toString() {
-        return  userId +
-                "," + balance +
-                "," + frozenBalance;
+        return  userId + Database.SPLIT + userId +
+                Database.SPLIT + balance +
+                Database.SPLIT + frozenBalance;
     }
-	
 }

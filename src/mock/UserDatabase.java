@@ -3,8 +3,6 @@ package mock;
 import model.pojo.User;
 import util.Convert;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
 import java.io.IOException;
 
 public class UserDatabase extends Database {
@@ -21,11 +19,15 @@ public class UserDatabase extends Database {
         String[] arr;
         String line = getData(PATH_USERS, INDEX_EMAIL, email);
         if (line != null) {
-            arr = line.split(",");
+            arr = line.split(Database.SPLIT);
             if (arr[INDEX_PASSWORD].equals(password)) {
                 user = Convert.userFrom(line);
             }
         }
         return user;
-    } 
+    }
+
+    public static User getUser(int id) throws IOException {
+        return Convert.userFrom(getData(PATH_USERS, INDEX_ID, String.valueOf(id)));
+    }
 }
