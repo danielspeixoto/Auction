@@ -49,6 +49,10 @@ public class AuctionDatabase extends Database {
                         Account account = AccountDatabase.getAccount(auction.getLastBidderId());
                         account.bidCompleted(auction.getLastBid());
                         AccountDatabase.update(account);
+
+                        Account sellerAccount = AccountDatabase.getAccount(auction.getOwnerId());
+                        sellerAccount.addBalance(auction.getLastBid());
+                        AccountDatabase.update(sellerAccount);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }

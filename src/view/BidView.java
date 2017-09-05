@@ -24,6 +24,8 @@ public abstract class BidView extends BaseView implements Bid.View {
 
     protected Bid.Presenter presenter;
 
+    public static final int BID_SENDER = 7;
+
     public BidView() {
         presenter = new BidPresenter(this);
         timeLeftLabel = new JLabel();
@@ -57,15 +59,16 @@ public abstract class BidView extends BaseView implements Bid.View {
         auction = (Auction) result;
         Item item = auction.getItem();
         frame.setTitle(item.getName());
-
         update();
     }
 
     public void updateTimer(long left) {
-        int hours = (int) left/3600;
-        int minutes = (int) (left/60) % 60;
-        int seconds = (int) left % 60;
-        timeLeftLabel.setText(hours + ":" + minutes + ":" + seconds);
+        if(left >= 0) {
+            int hours = (int) left/3600;
+            int minutes = (int) (left/60) % 60;
+            int seconds = (int) left % 60;
+            timeLeftLabel.setText(hours + ":" + minutes + ":" + seconds);
+        }
     }
 
     @Override
@@ -75,6 +78,7 @@ public abstract class BidView extends BaseView implements Bid.View {
             BackgroundTask.removeSubscriber(backTaskIndex);
         }
         update();
+        frame.setResult(BID_SENDER, auction);
     }
 
     private void update() {
@@ -89,9 +93,6 @@ public abstract class BidView extends BaseView implements Bid.View {
                 @Override
                 public void run() {
                     updateTimer(--left);
-                    if(left == 0) {
-                        BackgroundTask.removeSubscriber(backTaskIndex);
-                    }
                 }
             });
         }

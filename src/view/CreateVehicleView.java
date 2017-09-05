@@ -46,7 +46,7 @@ public class CreateVehicleView extends CreateItemView implements CreateVehicle.V
         motorDescriptionField = new InputField("Motor");
         motorDescriptionField.setLocation(25, 560);
         chassisField = new InputField("Chassis");
-        chassisField.setLocation(25, 6200);
+        chassisField.setLocation(25, 620);
         submitButton = new SimpleButton("Salvar");
         submitButton.setLocation(75, 680);
         submitButton.addActionListener(e ->

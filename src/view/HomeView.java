@@ -191,16 +191,15 @@ public class HomeView extends BaseView implements Home.View {
     }
 
     private void refresh() {
-        presenter.syncAuctions();
         Double value;
         accountValueLabel.setText("R$ "+ Double.toString((value = new Double(
                 Global.getCurrentUser().getAccount().getBalance()))).format("%.2f",value));
+        presenter.syncAuctions();
     }
    
     @Override
     public void setResult(int sender, Object result) {
     	super.setResult(sender, result);
-        System.out.println(sender);
         refresh();
     	if(sender == InjectMoneyView.INJECT_MONEY_SENDER) {
     	    accountValueLabel.setText("R$ "+ Double.toString((double) result).format("%.2f", result));

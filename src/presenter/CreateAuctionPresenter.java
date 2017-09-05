@@ -32,6 +32,7 @@ public class CreateAuctionPresenter implements CreateAuction.Presenter {
 
     @Override
     public void onCreateSuccess() {
+        view.onCreateSuccess();
         view.close();
     }
 

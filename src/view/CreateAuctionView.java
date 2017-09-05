@@ -99,6 +99,6 @@ public class CreateAuctionView extends BaseView implements CreateAuction.View {
 
     @Override
     public void onCreateSuccess() {
-        frame.setResult(CREATED_AUCTION_SENDER, null);
+        //frame.setResult(CREATED_AUCTION_SENDER, null);
     }
 }

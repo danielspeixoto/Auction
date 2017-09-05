@@ -14,7 +14,7 @@ public class HomeModel implements Home.Model {
     }
 
     @Override
-    public void getAuctions() {
+    public synchronized void getAuctions() {
         AuctionDatabase.getAll(new Transmitter() {
             @Override
             public void onReceived(Object obj) {
