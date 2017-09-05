@@ -4,6 +4,7 @@ import contract.CreateFluid;
 import model.pojo.Fluid;
 import presenter.CreateFluidPresenter;
 import util.Global;
+import util.Validate;
 import view.component.InputField;
 import view.component.SimpleButton;
 
@@ -70,12 +71,27 @@ public class CreateFluidView extends CreateItemView implements CreateFluid.View 
         
         submitButton = new SimpleButton("Salvar");
         submitButton.setLocation(100, 378);
-        submitButton.addActionListener(e ->
-                presenter.createFluid(new Fluid(Global.getCurrentUser().getId(), nameField.getText(),
-                        descriptionField.getText(), containerDescriptionField.getText(),
-                        Double.parseDouble(containerLengthField.getText()), Double.parseDouble(containerWidthField.getText()),
-                        Double.parseDouble(containerHeightField.getText()), Double.parseDouble(volumeField.getText()),
-                        Double.parseDouble(radiusField.getText()), Double.parseDouble(weightField.getText())))
+        submitButton.addActionListener(e -> {
+                    if (!Validate.numeric(containerLengthField.getText()).equals(Validate.OK)) {
+                        showErrorDialog("Entrada incorreta");
+                    } else if (!Validate.numeric(containerHeightField.getText()).equals(Validate.OK)) {
+                        showErrorDialog("Entrada incorreta");
+                    } else if (!Validate.numeric(radiusField.getText()).equals(Validate.OK)) {
+                        showErrorDialog("Entrada incorreta");
+                    } else if (!Validate.numeric(containerWidthField.getText()).equals(Validate.OK)) {
+                        showErrorDialog("Entrada incorreta");
+                    } else if (!Validate.numeric(volumeField.getText()).equals(Validate.OK)) {
+                        showErrorDialog("Entrada incorreta");
+                    } else if (!Validate.numeric(weightField.getText()).equals(Validate.OK)) {
+                        showErrorDialog("Entrada incorreta");
+                    } else {
+                        presenter.createFluid(new Fluid(Global.getCurrentUser().getId(), nameField.getText(),
+                                descriptionField.getText(), containerDescriptionField.getText(),
+                                Double.parseDouble(containerLengthField.getText()), Double.parseDouble(containerWidthField.getText()),
+                                Double.parseDouble(containerHeightField.getText()), Double.parseDouble(volumeField.getText()),
+                                Double.parseDouble(radiusField.getText()), Double.parseDouble(weightField.getText())));
+                    }
+                }
         );
         add(nameField);
         add(descriptionField);

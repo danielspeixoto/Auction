@@ -4,6 +4,7 @@ import model.pojo.Auction;
 import model.pojo.Item;
 import model.pojo.User;
 
+import java.util.List;
 import java.util.regex.Pattern;
 
 // Realiza valida√ß√µes, caso seja v√°lido retorna Validate.OK
@@ -33,7 +34,7 @@ public class Validate {
             return result;
         }
         if (!Pattern.matches(NAME_REGEX, user.getName())) {
-            result = "O nome n√£o est√° escrito propriamente";
+            result = "O nome n„o est· escrito propriamente";
             return result;
         }
         return result;
@@ -57,6 +58,12 @@ public class Validate {
 
     public static String validate(Item item) {
         String result = OK;
+        if(item.getName().length() < 1) {
+            return "Nome precisa ser preenchido";
+        }
+        if(item.getDescription().length() < 1) {
+            return "DescriÁ„o precisa ser preenchida";
+        }
         return result;
     }
 
@@ -67,9 +74,21 @@ public class Validate {
 
     public static String integer(String str) {
         String result = OK;
-        if (Pattern.matches("[0-9]+", result)) {
+        if (!Pattern.matches("[0-9]+", str)) {
             result = "N„o È um n˙mero v·lido";
         }
         return result;
     }
+
+    public static String notEmpty(List<String> arr) {
+        for (String str: arr) {
+            if(str.isEmpty()) {
+                return "Todos os campos devem ser preenchidos";
+            }
+        }
+        return OK;
+    }
+
+
+
 }

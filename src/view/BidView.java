@@ -11,6 +11,7 @@ import view.component.InputField;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DecimalFormat;
 
 public abstract class BidView extends BaseView implements Bid.View {
 
@@ -82,8 +83,9 @@ public abstract class BidView extends BaseView implements Bid.View {
     }
 
     private void update() {
-        minValueLabel.setText("O último valor inserido foi de : R$" + String.format(String.valueOf(auction.getLastBid()),"%.2f") +
-                ", para um novo lance, o valor deve ser de: R$" + String.format(String.valueOf(auction.getNextBidMin()), "%.2f") + " ou mais");
+        DecimalFormat df = new DecimalFormat("0.00");
+        minValueLabel.setText("O último valor inserido foi de : R$" + df.format(auction.getLastBid()) +
+                ", para um novo lance, o valor deve ser de: R$" +  df.format(auction.getNextBidMin()) + " ou mais");
 
         if(auction.getLastBidderId() != -1 && auction.getRemainingTime() > 0) {
             backTaskIndex = BackgroundTask.addSubscriber(new Runnable() {
