@@ -48,11 +48,11 @@ public class CreateRealtyView extends CreateItemView implements CreateRealty.Vie
         submitButton = new SimpleButton("Salvar");
         submitButton.setLocation(100, 360);
         submitButton.addActionListener(e ->  {
-                    if (!Validate.numeric(locationField.getText()).equals(Validate.OK)) {
-                        showErrorDialog("Entrada incorreta");
-                    } else if (!Validate.numeric(squareMetersField.getText()).equals(Validate.OK)) {
+                    if (!Validate.numeric(squareMetersField.getText()).equals(Validate.OK)) {
                         showErrorDialog("Entrada incorreta");
                     } else if (!Validate.numeric(constructionYearField.getText()).equals(Validate.OK)) {
+                        showErrorDialog("Entrada incorreta");
+                    } else if (locationField.getText().isEmpty()) {
                         showErrorDialog("Entrada incorreta");
                     } else {
                         presenter.createRealty(new Realty(Global.getCurrentUser().getId(), nameField.getText(),
