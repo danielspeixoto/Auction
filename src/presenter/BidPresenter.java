@@ -22,9 +22,9 @@ public class BidPresenter implements Bid.Presenter {
         if(auction.getRemainingTime() <= 0) {
             view.showErrorDialog("Tempo esgotado");
         } else if(value < auction.getNextBidMin()) {
-            view.showErrorDialog("Valor inserido nÃ£o Ã© grande o suficiente");
+            view.showErrorDialog("Valor inserido não é grande o suficiente!");
         } else if(user.getAccount().getBalance() < value) {
-            view.showErrorDialog("VocÃª nÃ£o tem dinheiro suficiente para efetuar a transaÃ§Ã£o");
+            view.showErrorDialog("Saldo indisponível para esta transação!");
         } else {
             model.bid(auction, value);
         }

@@ -11,6 +11,8 @@ import view.component.AuctionCellRenderer;
 import view.component.ToolBarButton;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
@@ -76,7 +78,8 @@ public class HomeView extends BaseView implements Home.View {
         editUser.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E, ActionEvent.CTRL_MASK));
         createAuction = new JMenuItem("Criar Leilão");
         createAuction.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_L, ActionEvent.CTRL_MASK));
-        myItems = new JMenuItem("Ver itens");
+        myItems = new JMenuItem("Meus itens");
+        myItems.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_M, ActionEvent.CTRL_MASK));
         logOut = new JMenuItem("Sair");
         logOut.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, ActionEvent.CTRL_MASK));
         
@@ -96,13 +99,13 @@ public class HomeView extends BaseView implements Home.View {
         toolBar.setBackground(new Color(234, 234, 234));   
         toolBar.setFloatable(false);
         toolBar.addSeparator();
-        toolBar.add(homeButton = new ToolBarButton("Página Inicial","src//images//home.png"));
+        toolBar.add(homeButton = new ToolBarButton("Página Inicial","src//images//fireplace.png"));
         toolBar.addSeparator();
         toolBar.add(auctionToolBarButton = new ToolBarButton("Criar Leilão","src//images//auction-icon.png"));
         toolBar.addSeparator();
         toolBar.add(addValueToolBarButton = new ToolBarButton("Injetar Valor","src//images//piggy-bank.png"));
         toolBar.addSeparator();
-        toolBar.add(refreshButton = new ToolBarButton("Atualizar","src//images//nav_refresh.png"));
+        toolBar.add(refreshButton = new ToolBarButton("Atualizar","src//images//refresh.png"));
         toolBar.addSeparator();
         toolBar.add(editToolBarButton = new ToolBarButton("Editar Perfil","src//images//edit.png"));
         toolBar.addSeparator();
@@ -138,7 +141,8 @@ public class HomeView extends BaseView implements Home.View {
         add(toolBar);
 
         list = new JList();
-        list.setBounds(0, 105, 600, 0);
+        list.setBounds(0, 105, 600, 0);  
+        list.setCursor(new Cursor(Cursor.HAND_CURSOR));
         list.setCellRenderer(new AuctionCellRenderer());
         list.addMouseListener(new MouseAdapter() {
             @Override
@@ -213,10 +217,10 @@ public class HomeView extends BaseView implements Home.View {
 		});
         
         editUser.addActionListener(e -> {
-        	JOptionPane.showOptionDialog(null, "Não disponível!", "Aviso", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, null, new Object[]{}, null); 	
+        	JOptionPane.showOptionDialog(null, "Não disponível!", "Editar Perfil", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, null, new Object[]{}, null); 	
 		});
         editToolBarButton.addActionListener(e -> {
-        	JOptionPane.showOptionDialog(null, "Não disponível!", "Aviso", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, null, new Object[]{}, null);
+        	JOptionPane.showOptionDialog(null, "Não disponível!", "Editar Perfil", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, null, new Object[]{}, null);
 		});
     }
 
