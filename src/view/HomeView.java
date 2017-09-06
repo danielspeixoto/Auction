@@ -11,8 +11,6 @@ import view.component.AuctionCellRenderer;
 import view.component.ToolBarButton;
 
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
-
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
@@ -255,7 +253,7 @@ public class HomeView extends BaseView implements Home.View {
     @Override
     public void onPostCreated() {
         super.onPostCreated();
-        frame.fillScreen();
+        frame.setResizable(true);
         frame.setSize(800, 600);
         frame.setResizable(false);
         frame.setLocationRelativeTo(null);

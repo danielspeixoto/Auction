@@ -51,12 +51,24 @@ public abstract class BidView extends BaseView implements Bid.View {
         super.setResult(sender, result);
         auction = (Auction) result;
         item = auction.getItem();
+
+        infoLabel.setBounds(25, 130, 150, 50);
+        infoLabel.setText("Informações Gerais");
+        add(infoLabel);
+        infoTextArea.setLineWrap(true);
+        infoTextArea.setWrapStyleWord(true);
+        infoTextArea.setEditable(false);
+        infoTextArea.setFocusable(false);
+        infoTextArea.setBounds(25, 165, 300, 100);
+        infoTextArea.setBackground(frame.getBackground());
+        add(infoTextArea);
+
         if(auction.getRemainingTime() > 0) {
         	valueField.setLocation(25, 20);
             valueField.setSize(300,50);
             valueField.textField.setSize(300,30);
             add(valueField);
-        	
+
             minValueTextArea.setLineWrap(true);
             minValueTextArea.setWrapStyleWord(true);
             minValueTextArea.setEditable(false);
@@ -64,19 +76,7 @@ public abstract class BidView extends BaseView implements Bid.View {
             minValueTextArea.setBounds(25, 80, 300, 50);
             minValueTextArea.setBackground(frame.getBackground());
             add(minValueTextArea);
-            
-            infoLabel.setBounds(25, 130, 150, 50);
-            infoLabel.setText("Informações Gerais");
-            add(infoLabel);
-            
-            infoTextArea.setLineWrap(true);
-    		infoTextArea.setWrapStyleWord(true);
-    		infoTextArea.setEditable(false);
-    		infoTextArea.setFocusable(false);
-    		infoTextArea.setBounds(25, 165, 300, 100);
-    		infoTextArea.setBackground(frame.getBackground());
-    		add(infoTextArea);
-    		
+
     		timeLeftLabel.setBounds(100, 280, 140, 50);
             timeLeftLabel.setFont(new Font("Arial", Font.PLAIN, 32));
             add(timeLeftLabel);
