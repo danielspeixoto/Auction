@@ -68,6 +68,8 @@ public class CreateMiscView extends CreateItemView implements CreateMisc.View {
                         showErrorDialog("Entrada incorreta");
                     } else if (!Validate.numeric(weightField.getText()).equals(Validate.OK)) {
                         showErrorDialog("Entrada incorreta");
+                    }  else if (containerDescriptionField.getText().isEmpty()) {
+                        showErrorDialog("Entrada incorreta");
                     } else {
                         presenter.createMisc(new Misc(Global.getCurrentUser().getId(), nameField.getText(),
                                 descriptionField.getText(), Double.parseDouble(lengthField.getText()),

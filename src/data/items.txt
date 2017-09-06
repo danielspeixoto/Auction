@@ -4,4 +4,10 @@
 4#1#ads#ads#f#12#1.0#1.0#1.0#1.0#1.0#1.0#
 5#1#Veículo estouraado#Zero e sem riscos#v#100000#Fiat#Uno#2#Gasolina#Azul#5#motor 1000#12090923#
 6#1#Bala#Bala de tangerina sem aÃ§Ãºcar#m#1.0#1.0#1.0#1.0#Caixa do SEDEX#
-7#1#asd#asd#r#asd#12.0#12#
+7#1#Casa#Ótima localização#r#Jardim Apipema #200.0#2015#
+8#1#Gás Hélio#gás para se divertir#f#Cilindro de aço#20.0#10.0#10.0#10.0#5.0#10000.0#
+9#2#Ccomputador Asus#PC ASUS Core i5, 500gB#m#10.0#10.0#10.0#10.0#Caixa de papelão#
+10#2#Biscoito#Biscoito Treloso#m#20.0#20.0#20.0#20.0#Pacote de biscoito#
+11#2#Celular#Celular LG G4 Snapdragon 820#m#20.0#20.0#20.0#500.0#Caixa original #
+12#2#Celular Samsung Galaxy S8#Novo#m#0.88#0.87#0.54#500.0#Caixa Original#
+13#2#Bala#bala de maça#m#0.5#0.5#0.5#50.0#Saco de papel#

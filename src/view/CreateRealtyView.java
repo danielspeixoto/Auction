@@ -52,6 +52,8 @@ public class CreateRealtyView extends CreateItemView implements CreateRealty.Vie
                         showErrorDialog("Entrada incorreta");
                     } else if (!Validate.numeric(constructionYearField.getText()).equals(Validate.OK)) {
                         showErrorDialog("Entrada incorreta");
+                    } else if (locationField.getText().isEmpty()) {
+                        showErrorDialog("Entrada incorreta");
                     } else {
                         presenter.createRealty(new Realty(Global.getCurrentUser().getId(), nameField.getText(),
                                 descriptionField.getText(), locationField.getText(),
